@@ -1,6 +1,6 @@
-from sklearn.naive_bayes import GaussianNB
+from sklearn.linear_model import Perceptron
 
 def train_model(features, labels):
-    model = GaussianNB()
+    model = Perceptron()
     model.fit(features, labels)
     return model
