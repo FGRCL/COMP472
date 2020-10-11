@@ -1,4 +1,12 @@
 [[package]]
+name = "aenum"
+version = "2.2.4"
+description = "Advanced Enumerations (compatible with Python's stdlib Enum), NamedTuples, and NamedConstants"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "atomicwrites"
 version = "1.4.0"
 description = "Atomic file writes."
@@ -51,7 +59,7 @@ six = "*"
 
 [[package]]
 name = "joblib"
-version = "0.16.0"
+version = "0.17.0"
 description = "Lightweight pipelining: using Python functions as pipeline jobs."
 category = "main"
 optional = false
@@ -233,9 +241,14 @@ python-versions = "*"
 [metadata]
 lock-version = "1.0"
 python-versions = "^3.8"
-content-hash = "1f0475a9f3012fc3bf8a3fbceefbaf4b0714fe572c3b90cbd520f2eea44e6a8a"
+content-hash = "de6dab1fa31d3358e1a9760fd781b168eb62eb284954cec769b6c87f9aac5ecf"
 
 [metadata.files]
+aenum = [
+    {file = "aenum-2.2.4-py2-none-any.whl", hash = "sha256:85adabd63183d283250bf7acd9fa23c7e45b1c8d1efbb84b233160f3c438dc18"},
+    {file = "aenum-2.2.4-py3-none-any.whl", hash = "sha256:bcb4fd350d36af336b6b5898e5d89f76344621d9c1b2de69c81acf1d3e6b1145"},
+    {file = "aenum-2.2.4.tar.gz", hash = "sha256:81828d1fbe20b6b188d75b21a0fa936d7d929d839ef843ef385d9c2a97082864"},
+]
 atomicwrites = [
     {file = "atomicwrites-1.4.0-py2.py3-none-any.whl", hash = "sha256:6d1784dea7c0c8d4a5172b6c620f40b6e4cbfdf96d783691f2e1302a7b88e197"},
     {file = "atomicwrites-1.4.0.tar.gz", hash = "sha256:ae70396ad1a434f9c7046fd2dd196fc04b12f9e91ffb859164193be8b6168a7a"},
@@ -257,8 +270,8 @@ cycler = [
     {file = "cycler-0.10.0.tar.gz", hash = "sha256:cd7b2d1018258d7247a71425e9f26463dfb444d411c39569972f4ce586b0c9d8"},
 ]
 joblib = [
-    {file = "joblib-0.16.0-py3-none-any.whl", hash = "sha256:d348c5d4ae31496b2aa060d6d9b787864dd204f9480baaa52d18850cb43e9f49"},
-    {file = "joblib-0.16.0.tar.gz", hash = "sha256:8f52bf24c64b608bf0b2563e0e47d6fcf516abc8cfafe10cfd98ad66d94f92d6"},
+    {file = "joblib-0.17.0-py3-none-any.whl", hash = "sha256:698c311779f347cf6b7e6b8a39bb682277b8ee4aba8cf9507bc0cf4cd4737b72"},
+    {file = "joblib-0.17.0.tar.gz", hash = "sha256:9e284edd6be6b71883a63c9b7f124738a3c16195513ad940eae7e3438de885d5"},
 ]
 kiwisolver = [
     {file = "kiwisolver-1.2.0-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:443c2320520eda0a5b930b2725b26f6175ca4453c61f739fef7a5847bd262f74"},
