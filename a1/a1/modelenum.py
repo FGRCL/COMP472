@@ -12,6 +12,7 @@ class modeltype(Enum):
         self.val = val
         self.create_model_lambda = create_model_lambda
 
+    @staticmethod
     def from_string(string):
         return modeltype[string]
 
@@ -20,3 +21,4 @@ class modeltype(Enum):
     perceptron = 3, lambda features, labels: perceptron.train_model(features, labels)
     basemlp = 4, lambda features, labels: basemlp.train_model(features, labels)
 
+modeltype.from_string = staticmethod(modeltype.from_string)
