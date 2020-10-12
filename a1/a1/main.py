@@ -6,7 +6,7 @@ def main(training_dataset, model_enum):
     training_dataset_matrix = util.csv_to_nparray(training_dataset)
     features, labels = util.split_features_and_labels(training_dataset_matrix)
 
-    model = model_enum.create_model_lambda(features, labels)
+    model = model_enum.create_model_lambda(training_dataset, features, labels)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='Model trainer', description='An AI model trainer')
