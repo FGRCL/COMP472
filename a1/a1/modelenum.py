@@ -1,4 +1,4 @@
-from a1 import naivebayes, basedt, perceptron, basemlp
+from a1 import naivebayes, basedt, bestdt, perceptron, basemlp, bestmlp
 from enum import Enum
 
 class modeltype(Enum):
@@ -16,9 +16,11 @@ class modeltype(Enum):
     def from_string(string):
         return modeltype[string]
 
-    bayes = 1, lambda features, labels: naivebayes.train_model(features, labels)
-    basedt = 2, lambda features, labels: basedt.train_model(features, labels)
-    perceptron = 3, lambda features, labels: perceptron.train_model(features, labels)
-    basemlp = 4, lambda features, labels: basemlp.train_model(features, labels)
+    bayes = 1, lambda training_dataset, features, labels: naivebayes.train_model(training_dataset, features, labels)
+    basedt = 2, lambda training_dataset, features, labels: basedt.train_model(training_dataset, features, labels)
+    bestdt = 3, lambda training_dataset, features, labels: bestdt.train_model(training_dataset, features, labels)
+    perceptron = 4, lambda training_dataset, features, labels: perceptron.train_model(training_dataset, features, labels)
+    basemlp = 5, lambda training_dataset, features, labels: basemlp.train_model(training_dataset, features, labels)
+    bestmlp = 6, lambda training_dataset, features, labels: bestmlp.train_model(training_dataset, features, labels)
 
 modeltype.from_string = staticmethod(modeltype.from_string)

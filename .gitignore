@@ -139,6 +139,7 @@ cython_debug/
 
 # VS code
 .vscode/*
+*/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -157,6 +158,7 @@ cython_debug/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.DS_Store
 
 # Generated files
 .idea/**/contentModel.xml
