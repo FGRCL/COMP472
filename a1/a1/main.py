@@ -1,17 +1,29 @@
 import argparse
+import sys
 from a1 import util
 from a1.modelenum import modeltype
+from numpy import savetxt
 
-def main(training_dataset, model_enum):
-    training_dataset_matrix = util.csv_to_nparray(training_dataset)
-    features, labels = util.split_features_and_labels(training_dataset_matrix)
+def main(training_dataset, test_dataset, model_enum, output_file):
+    features, labels = util.parse_dataset(training_dataset)
+    input, expected_labels = util.parse_dataset(test_dataset)
 
     model = model_enum.create_model_lambda(training_dataset, features, labels)
+    predictions = model.predict(input)
+
+    write_result_to_file(output_file, predictions)
+
+
+def write_result_to_file(output_file, predictions):
+    for pair in zip(range(len(predictions)), predictions):
+        print('{},{}'.format(pair[0], pair[1]), file=output_file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='Model trainer', description='An AI model trainer')
-    parser.add_argument('--trainingset', metavar='path', required=True, help='the path to training set', )
-    parser.add_argument('--model',
+    parser.add_argument('--trainingset', '-tr', metavar='training set path', required=True, help='the path to training set', )
+    parser.add_argument('--testset', '-ts', metavar='test set path', required=True, help='the path to test set', )
+    parser.add_argument('--output', '-o', metavar='the ouput file', required=False, help='the path to training set', default=sys.stdout)
+    parser.add_argument('-m', '--model',
         type=modeltype.from_string,
         choices=modeltype,
         required=True,
@@ -19,5 +31,8 @@ if __name__ == "__main__":
         help='The model to train'
     )
     args = parser.parse_args()
-    main(args.trainingset, args.model_enum)
+    output_file = args.output
+    if type(args.output) is str:
+        output_file = open(args.output, 'w')
+    main(args.trainingset, args.testset, args.model_enum, output_file)
 
