@@ -10,6 +10,7 @@ numpy = "*"
 scikit-learn = "*"
 matplotlib = "*"
 graphviz = "^0.14.2"
+pandas = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

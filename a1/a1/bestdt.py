@@ -20,11 +20,11 @@ def train_model(training_dataset, features, labels):
     # Creating a grpah 
     # To run, I installed graphviz using poetry
     # Then to convert .dot file to png run $ dot -Tpng BestDT.dot -o BestDT.png   
-    export_graphviz(
-        gridSearch.best_estimator_,
-        out_file=("../exports/"+fileName+"-BestDT.dot"),
-        filled=True
-    )
+    # export_graphviz(
+    #     gridSearch.best_estimator_,
+    #     out_file=("../exports/"+fileName+"-BestDT.dot"),
+    #     filled=True
+    # )
     
     # You can uncomment the following to see detailed results
 
