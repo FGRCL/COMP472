@@ -7,6 +7,6 @@ python a1/main.py -m bestdt -tr dataset/train_2.csv -ts dataset/test_with_label_
 python a1/main.py -m perceptron -tr dataset/train_1.csv -ts dataset/test_with_label_1.csv -o out/PER-DS1.csv
 python a1/main.py -m perceptron -tr dataset/train_2.csv -ts dataset/test_with_label_2.csv -o out/PER-DS2.csv
 python a1/main.py -m basemlp -tr dataset/train_1.csv -ts dataset/test_with_label_1.csv -o out/Base-MLP-DS1.csv
-python a1/main.py -m bestmlp -tr dataset/train_2.csv -ts dataset/test_with_label_2.csv -o out/Best-MLP-DS2.csv
 python a1/main.py -m basemlp -tr dataset/train_2.csv -ts dataset/test_with_label_2.csv -o out/Base-MLP-DS2.csv
 python a1/main.py -m bestmlp -tr dataset/train_1.csv -ts dataset/test_with_label_1.csv -o out/Best-MLP-DS1.csv
+python a1/main.py -m bestmlp -tr dataset/train_2.csv -ts dataset/test_with_label_2.csv -o out/Best-MLP-DS2.csv
