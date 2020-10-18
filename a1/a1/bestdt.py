@@ -22,7 +22,7 @@ def train_model(training_dataset, features, labels):
     # Then to convert .dot file to png run $ dot -Tpng BestDT.dot -o BestDT.png   
     # export_graphviz(
     #     gridSearch.best_estimator_,
-    #     out_file=("../exports/"+fileName+"-BestDT.dot"),
+    #     out_file=("../out/graphs/"+fileName+"-BestDT.dot"),
     #     filled=True
     # )
     
