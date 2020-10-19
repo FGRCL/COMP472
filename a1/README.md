@@ -40,3 +40,17 @@ use `main.py` to make model predictions. The script has the following arguments.
 example: ` python a1/main.py -tr dataset/train_1.csv -ts dataset/test_with_label_1.csv -o out/GNB-DS1.txt -m bayes       `
 
 you can also use the convenience script `./create_all_output` to generate predictions with all models and datasets.
+
+## Performing a gridsearch
+
+use `main.py` to make a grid search of hyper parameters. Grid search is only available for the bestdt and bestmlp models. The script has the following arguments.
+
+```
+--trainingset/-tr, training set path
+                        the path to training set
+  --validationset/-vs, validation set path
+                        the path to the validation set
+  --graphoutput/-go, output for the graph
+  --model/-m, {bayes, basedt, bestdt, perceptron, basemlp, bestmlp}
+                        The model to train
+```

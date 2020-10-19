@@ -21,7 +21,7 @@ param_grid = {
 
 # This takes a very long time to run 
 def train_model(training_dataset, features, labels):
-    model = MLPClassifier((100), 'logistic', 'sgd')
+    model = MLPClassifier((500), solver='adam', activation='tanh')
     model.fit(features, labels)
     return model
 

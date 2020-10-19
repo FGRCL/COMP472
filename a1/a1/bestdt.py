@@ -29,7 +29,7 @@ param_grid = {
 #   Min Samples Split : 3
 #   Class Weight : None
 def train_model(training_dataset, features, labels):
-    model = DecisionTreeClassifier(class_weight=None, criterion='entropy', max_depth=None, min_impurity_decrease=0.0, min_samples_split=2) # Change verbose size for more or less console output
+    model = DecisionTreeClassifier(class_weight=None, criterion='entropy', max_depth=None, min_impurity_decrease=0.0, min_samples_split=3) # Change verbose size for more or less console output
     model.fit(features, labels)
     return model
 

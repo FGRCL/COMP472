@@ -12,7 +12,7 @@ def train_model(training_dataset, features, labels):
     # Then to convert .dot file to png run $ dot -Tpng <FILE_NAME>.dot -o <FILE_NAME>.png
     export_graphviz(
         model,
-        out_file=("../out/graphs/"+fileName+"-BaseDT.dot"),
+        out_file=("out/graphs/"+fileName+"-BaseDT.dot"),
         filled=True
     )
     

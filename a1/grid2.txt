@@ -1,0 +1,84 @@
+Fitting 1 folds for each of 40 candidates, totalling 40 fits
+[CV] activation=logistic, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=adam 
+[CV]  activation=logistic, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=adam, score=0.632, total=  35.2s
+[CV] activation=logistic, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=sgd 
+[CV]  activation=logistic, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=sgd, score=0.240, total=  10.4s
+[CV] activation=logistic, hidden_layer_sizes=(10, 10, 10), solver=adam 
+[CV]  activation=logistic, hidden_layer_sizes=(10, 10, 10), solver=adam, score=0.828, total=  51.5s
+[CV] activation=logistic, hidden_layer_sizes=(10, 10, 10), solver=sgd 
+[CV]  activation=logistic, hidden_layer_sizes=(10, 10, 10), solver=sgd, score=0.300, total=   8.3s
+[CV] activation=logistic, hidden_layer_sizes=(30, 50), solver=adam ...
+[CV]  activation=logistic, hidden_layer_sizes=(30, 50), solver=adam, score=0.894, total=  56.5s
+[CV] activation=logistic, hidden_layer_sizes=(30, 50), solver=sgd ....
+[CV]  activation=logistic, hidden_layer_sizes=(30, 50), solver=sgd, score=0.604, total=  52.7s
+[CV] activation=logistic, hidden_layer_sizes=(200, 200), solver=adam .
+[CV]  activation=logistic, hidden_layer_sizes=(200, 200), solver=adam, score=0.924, total= 1.8min
+[CV] activation=logistic, hidden_layer_sizes=(200, 200), solver=sgd ..
+[CV]  activation=logistic, hidden_layer_sizes=(200, 200), solver=sgd, score=0.720, total= 2.6min
+[CV] activation=logistic, hidden_layer_sizes=(500,), solver=adam .....
+[CV]  activation=logistic, hidden_layer_sizes=(500,), solver=adam, score=0.926, total= 4.0min
+[CV] activation=logistic, hidden_layer_sizes=(500,), solver=sgd ......
+[CV]  activation=logistic, hidden_layer_sizes=(500,), solver=sgd, score=0.867, total= 4.1min
+[CV] activation=tanh, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=adam 
+[CV]  activation=tanh, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=adam, score=0.694, total=  21.9s
+[CV] activation=tanh, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=sgd .
+[CV]  activation=tanh, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=sgd, score=0.714, total=  24.0s
+[CV] activation=tanh, hidden_layer_sizes=(10, 10, 10), solver=adam ...
+[CV]  activation=tanh, hidden_layer_sizes=(10, 10, 10), solver=adam, score=0.822, total=  29.2s
+[CV] activation=tanh, hidden_layer_sizes=(10, 10, 10), solver=sgd ....
+[CV]  activation=tanh, hidden_layer_sizes=(10, 10, 10), solver=sgd, score=0.838, total=  30.4s
+[CV] activation=tanh, hidden_layer_sizes=(30, 50), solver=adam .......
+[CV]  activation=tanh, hidden_layer_sizes=(30, 50), solver=adam, score=0.897, total=  27.7s
+[CV] activation=tanh, hidden_layer_sizes=(30, 50), solver=sgd ........
+[CV]  activation=tanh, hidden_layer_sizes=(30, 50), solver=sgd, score=0.894, total=  41.0s
+[CV] activation=tanh, hidden_layer_sizes=(200, 200), solver=adam .....
+[CV]  activation=tanh, hidden_layer_sizes=(200, 200), solver=adam, score=0.922, total=  56.1s
+[CV] activation=tanh, hidden_layer_sizes=(200, 200), solver=sgd ......
+[CV]  activation=tanh, hidden_layer_sizes=(200, 200), solver=sgd, score=0.897, total= 1.9min
+[CV] activation=tanh, hidden_layer_sizes=(500,), solver=adam .........
+[CV]  activation=tanh, hidden_layer_sizes=(500,), solver=adam, score=0.928, total= 2.2min
+[CV] activation=tanh, hidden_layer_sizes=(500,), solver=sgd ..........
+[CV]  activation=tanh, hidden_layer_sizes=(500,), solver=sgd, score=0.894, total= 3.3min
+[CV] activation=relu, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=adam 
+[CV]  activation=relu, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=adam, score=0.595, total=  29.6s
+[CV] activation=relu, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=sgd .
+[CV]  activation=relu, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=sgd, score=0.697, total=  26.8s
+[CV] activation=relu, hidden_layer_sizes=(10, 10, 10), solver=adam ...
+[CV]  activation=relu, hidden_layer_sizes=(10, 10, 10), solver=adam, score=0.834, total=  32.8s
+[CV] activation=relu, hidden_layer_sizes=(10, 10, 10), solver=sgd ....
+[CV]  activation=relu, hidden_layer_sizes=(10, 10, 10), solver=sgd, score=0.793, total=  32.9s
+[CV] activation=relu, hidden_layer_sizes=(30, 50), solver=adam .......
+[CV]  activation=relu, hidden_layer_sizes=(30, 50), solver=adam, score=0.892, total=  45.0s
+[CV] activation=relu, hidden_layer_sizes=(30, 50), solver=sgd ........
+[CV]  activation=relu, hidden_layer_sizes=(30, 50), solver=sgd, score=0.886, total=  42.7s
+[CV] activation=relu, hidden_layer_sizes=(200, 200), solver=adam .....
+[CV]  activation=relu, hidden_layer_sizes=(200, 200), solver=adam, score=0.919, total= 1.0min
+[CV] activation=relu, hidden_layer_sizes=(200, 200), solver=sgd ......
+[CV]  activation=relu, hidden_layer_sizes=(200, 200), solver=sgd, score=0.896, total= 1.8min
+[CV] activation=relu, hidden_layer_sizes=(500,), solver=adam .........
+[CV]  activation=relu, hidden_layer_sizes=(500,), solver=adam, score=0.919, total= 2.7min
+[CV] activation=relu, hidden_layer_sizes=(500,), solver=sgd ..........
+[CV]  activation=relu, hidden_layer_sizes=(500,), solver=sgd, score=0.897, total= 3.7min
+[CV] activation=identity, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=adam 
+[CV]  activation=identity, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=adam, score=0.822, total=  38.9s
+[CV] activation=identity, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=sgd 
+[CV]  activation=identity, hidden_layer_sizes=(5, 5, 5, 5, 5), solver=sgd, score=0.822, total=  32.7s
+[CV] activation=identity, hidden_layer_sizes=(10, 10, 10), solver=adam 
+[CV]  activation=identity, hidden_layer_sizes=(10, 10, 10), solver=adam, score=0.846, total=  31.7s
+[CV] activation=identity, hidden_layer_sizes=(10, 10, 10), solver=sgd 
+[CV]  activation=identity, hidden_layer_sizes=(10, 10, 10), solver=sgd, score=0.860, total=  31.4s
+[CV] activation=identity, hidden_layer_sizes=(30, 50), solver=adam ...
+[CV]  activation=identity, hidden_layer_sizes=(30, 50), solver=adam, score=0.841, total=  46.4s
+[CV] activation=identity, hidden_layer_sizes=(30, 50), solver=sgd ....
+[CV]  activation=identity, hidden_layer_sizes=(30, 50), solver=sgd, score=0.867, total=  39.3s
+[CV] activation=identity, hidden_layer_sizes=(200, 200), solver=adam .
+[CV]  activation=identity, hidden_layer_sizes=(200, 200), solver=adam, score=0.848, total=  46.7s
+[CV] activation=identity, hidden_layer_sizes=(200, 200), solver=sgd ..
+[CV]  activation=identity, hidden_layer_sizes=(200, 200), solver=sgd, score=0.870, total= 1.8min
+[CV] activation=identity, hidden_layer_sizes=(500,), solver=adam .....
+[CV]  activation=identity, hidden_layer_sizes=(500,), solver=adam, score=0.838, total= 1.6min
+[CV] activation=identity, hidden_layer_sizes=(500,), solver=sgd ......
+[CV]  activation=identity, hidden_layer_sizes=(500,), solver=sgd, score=0.878, total= 2.8min
+MLPClassifier(activation='tanh', hidden_layer_sizes=(500,))
+{'activation': 'tanh', 'hidden_layer_sizes': (500,), 'solver': 'adam'}
+0.9275641025641026
