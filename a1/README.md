@@ -37,9 +37,9 @@ use `main.py` to make model predictions. The script has the following arguments.
                         The model to train
 
 ```
-example: ` python a1/main.py -tr dataset/train_1.csv -ts dataset/test_with_label_1.csv -o out/GNB-DS1.txt -m bayes       `
+example: ` python a1/main.py -tr dataset/train_1.csv -ts dataset/test_with_label_1.csv -o out/<OUTPUT_FILE>.csv -m bayes       `
 
-you can also use the convenience script `./create_all_output` to generate predictions with all models and datasets.
+you can also use the convenient script `./create_all_output` to generate predictions with all models and datasets.
 
 ## Performing a gridsearch
 
@@ -54,4 +54,4 @@ use `main.py` to make a grid search of hyper parameters. Grid search is only ava
   --model/-m, {bayes, basedt, bestdt, perceptron, basemlp, bestmlp}
                         The model to train
 ```
-example: ` python a1/gridsearch.py -tr dataset/train_1.csv -ts -vs dataset/val_1.csv -go out/graphs/<NAME>.dot -m bayes       `
+example: ` python a1/gridsearch.py -tr dataset/train_1.csv -ts -vs dataset/val_1.csv -go out/graphs/<GRAPH_NAME>.dot -m bayes       `
