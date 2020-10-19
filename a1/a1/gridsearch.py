@@ -16,7 +16,7 @@ def main(model, trainingset, validationset, graphoutput):
     if graphoutput is not None:
         export_graphviz(
             gridSearch.best_estimator_,
-            out_file=(util.parseFileName(graphoutput)),
+            out_file=(graphoutput),
             filled=True
         )
 
