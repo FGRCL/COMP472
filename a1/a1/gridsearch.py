@@ -1,7 +1,6 @@
 import argparse
-import util
+from a1 import util
 from sklearn.tree import export_graphviz
-
 from a1.modelenum import modeltype
 
 
