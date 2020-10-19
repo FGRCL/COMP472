@@ -24,7 +24,7 @@ example: `python a1/plotDataset.py --dataset dataset/train_1.csv`
 
 ## Making predictions with models
 
-***NOTE: Pre-generated output files for each model's predecition on both datasets can be found in the 'out' folder
+***NOTE: Pre-generated output files for each model's predecition on both datasets can be found in the 'out' folder***
 
 use `main.py` to make model predictions. The script has the following arguments.
 
