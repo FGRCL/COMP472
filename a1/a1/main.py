@@ -12,7 +12,7 @@ def main(training_dataset, test_dataset, model_enum, output_file):
     model = model_enum.create_model_lambda(training_dataset, features, labels)
     predictions = model.predict(input)
     confusion = confusion_matrix(expected_labels, predictions)
-    metrics = precision_recall_fscore_support(expected_labels, predictions, average=None)
+    metrics = precision_recall_fscore_support(expected_labels, predictions, average=None, zero_division=0)
     accuracy = accuracy_score(expected_labels, predictions)
     f1_macro = f1_score(expected_labels, predictions, average='macro')
     f1_weighted = f1_score(expected_labels, predictions, average='weighted')
@@ -81,7 +81,7 @@ def generate_model_metrics(output_file, accuracy, f1_macro, f1_weighted) :
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog='Model trainer', description='An AI model trainer')
+    parser = argparse.ArgumentParser(prog='Model trainer', description='An AI grid searcher')
     parser.add_argument('--trainingset', '-tr', metavar='training set path', required=True, help='the path to training set', )
     parser.add_argument('--testset', '-ts', metavar='test set path', required=True, help='the path to test set', )
     parser.add_argument('--output', '-o', metavar='the path to the ouput file', required=False, help='the path to output file', default=sys.stdout)

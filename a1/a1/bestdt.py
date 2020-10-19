@@ -1,35 +1,33 @@
+import numpy as np
+from sklearn.model_selection import PredefinedSplit
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 from sklearn.model_selection import GridSearchCV
 from a1 import util
+
 
 # Grid search hyperparameters
 param_grid = {
     'criterion' : ['gini', 'entropy'], # Requirement
     'max_depth' : [None, 10], # Requirement
-    'min_samples_split' : [0.5, 1.0], # Values of our choice
-    'min_impurity_decrease' : [0.0, 0.1, 0.5], # Values of our choice
+    'min_samples_split' : np.arange(2, 6, 1, dtype=int), # Values of our choice. favorites: dataset1: 4  dataset2: 2
+    'min_impurity_decrease' : np.arange(0.0, 0.1, 0.01, dtype=float), # Values of our choice 0.0
     'class_weight' : [None, 'balanced'] # Requirement
 }
 
 def train_model(training_dataset, features, labels):
-    
-    fileName = util.parseFileName(training_dataset)
-    gridSearch = GridSearchCV(DecisionTreeClassifier(), param_grid, verbose=5) # Change verbose size for more or less console output
-    gridSearch.fit(features, labels)
+    model = DecisionTreeClassifier(class_weight=None, criterion='entropy', max_depth=None, min_impurity_decrease=0.0, min_samples_split=2) # Change verbose size for more or less console output
+    model.fit(features, labels)
+    return model
 
-    # Creating a grpah 
-    # To run, I installed graphviz using poetry
-    # Then to convert .dot file to png run $ dot -Tpng BestDT.dot -o BestDT.png   
-    # export_graphviz(
-    #     gridSearch.best_estimator_,
-    #     out_file=("../out/graphs/"+fileName+"-BestDT.dot"),
-    #     filled=True
-    # )
-    
-    # You can uncomment the following to see detailed results
+def perform_grid_search(features, labels, validation_features, validation_labels):
+    all_features = np.concatenate(features, validation_features)
+    all_labels = np.concatenate(labels, validation_labels)
 
-    # print(gridSearch.best_estimator_)
-    # print(gridSearch.best_params_)
-    # print(gridSearch.cv_results_)
+    test_fold = [-1 for _ in features] + [0 for _ in validation_features]
+    cv = PredefinedSplit(test_fold)
 
+    gridSearch = GridSearchCV(DecisionTreeClassifier(), param_grid, verbose=5, cv=cv)  # Change verbose size for more or less console output
+    gridSearch.fit(all_features, all_labels)
     return gridSearch
+
+
