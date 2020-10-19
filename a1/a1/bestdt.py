@@ -20,14 +20,15 @@ def train_model(training_dataset, features, labels):
     return model
 
 def perform_grid_search(features, labels, validation_features, validation_labels):
-    all_features = np.concatenate(features, validation_features)
-    all_labels = np.concatenate(labels, validation_labels)
+    all_features = np.concatenate([features, validation_features])
+    all_labels = np.concatenate([labels, validation_labels])
 
     test_fold = [-1 for _ in features] + [0 for _ in validation_features]
     cv = PredefinedSplit(test_fold)
 
     gridSearch = GridSearchCV(DecisionTreeClassifier(), param_grid, verbose=5, cv=cv)  # Change verbose size for more or less console output
     gridSearch.fit(all_features, all_labels)
+
     return gridSearch
 
 

@@ -9,7 +9,6 @@ def main(model, trainingset, validationset, graphoutput):
     features, labels = util.parse_dataset(trainingset)
     validation_features, validation_labels = util.parse_dataset(validationset)
 
-    print("here")
     gridSearch = model.perform_grid_search_lambda(features, labels, validation_features, validation_labels)
 
     # Creating a grpah
@@ -42,5 +41,4 @@ if __name__ == '__main__':
     )
 
     args = parser.parse_args()
-    print(args)
     main(args.model_enum, args.trainingset, args.validationset, args.graphoutput)
