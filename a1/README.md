@@ -32,7 +32,7 @@ use `main.py` to make model predictions. The script has the following arguments.
   --testset/-ts, test set path
                         the path to test set
   --output/-o, the path to the ouput file
-                        the path to training set
+                        the path to output file
   --model/-m, {bayes, basedt, bestdt, perceptron, basemlp, bestmlp}
                         The model to train
 
