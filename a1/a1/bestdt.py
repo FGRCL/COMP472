@@ -23,6 +23,7 @@ def perform_grid_search(features, labels, validation_features, validation_labels
     all_features = np.concatenate([features, validation_features])
     all_labels = np.concatenate([labels, validation_labels])
 
+
     test_fold = [-1 for _ in features] + [0 for _ in validation_features]
     cv = PredefinedSplit(test_fold)
 
