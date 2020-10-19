@@ -54,3 +54,4 @@ use `main.py` to make a grid search of hyper parameters. Grid search is only ava
   --model/-m, {bayes, basedt, bestdt, perceptron, basemlp, bestmlp}
                         The model to train
 ```
+example: ` python a1/gridsearch.py -tr dataset/train_1.csv -ts -vs dataset/val_1.csv -go out/graphs/<NAME>.dot -m bayes       `
