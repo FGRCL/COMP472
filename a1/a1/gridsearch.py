@@ -29,7 +29,7 @@ def main(model, trainingset, validationset, graphoutput):
     pass
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(prog='Model trainer', description='An AI model trainer')
+    parser = argparse.ArgumentParser(prog='Model trainer', description='An AI grid searcher')
     parser.add_argument('--trainingset', '-tr', metavar='training set path', required=True, help='the path to training set', )
     parser.add_argument('--validationset', '-vs', metavar='validation set path', required=True, help='the path to the validation set', )
     parser.add_argument('--graphoutput', '-go', metavar='output for the graph')

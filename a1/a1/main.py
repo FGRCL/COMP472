@@ -81,7 +81,7 @@ def generate_model_metrics(output_file, accuracy, f1_macro, f1_weighted) :
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(prog='Model trainer', description='An AI grid searcher')
+    parser = argparse.ArgumentParser(prog='Model trainer', description='An AI model trainer')
     parser.add_argument('--trainingset', '-tr', metavar='training set path', required=True, help='the path to training set', )
     parser.add_argument('--testset', '-ts', metavar='test set path', required=True, help='the path to test set', )
     parser.add_argument('--output', '-o', metavar='the path to the ouput file', required=False, help='the path to output file', default=sys.stdout)
