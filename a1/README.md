@@ -1,3 +1,4 @@
+[Repository URL](https://github.com/FGRCL/COMP472)
 # Installing a1
 use `poetry install` to install the environment then `poetry shell` to activate it  
 or  
