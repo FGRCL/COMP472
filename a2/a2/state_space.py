@@ -6,7 +6,7 @@ def successors(state, current_position: Position):
     height = len(state)
     width = len(state[0])
 
-    if at_vertical_edge(current_position, height, width):
+    if at_vertical_edge(current_position, width):
         yield from vertical_moves(state, current_position, height)
         if at_major_diagonal_corner(current_position, height, width):
             yield from horizontal_moves(state, current_position, width)
@@ -19,7 +19,7 @@ def successors(state, current_position: Position):
                 yield move_right(state, current_position, width)
             else:
                 yield move_left(state, current_position, width)
-    elif at_horizontal_edge(current_position, height, width):
+    elif at_horizontal_edge(current_position, height):
         yield from horizontal_moves(state, current_position, width)
         if at_major_diagonal_corner(current_position, height, width):
             yield from vertical_moves(state, current_position, height)
@@ -72,7 +72,7 @@ def move_up(state, current_position, height):
 
 def move_down(state, current_position, height):
     cost = 2 if current_position.y == height - 1 else 1
-    new_y = increment_axis(current_position[1], height)
+    new_y = increment_axis(current_position.y, height)
     new_state = get_new_sate(state, current_position.x, current_position.y, current_position.x, new_y)
     return (new_state, cost)
 
@@ -120,7 +120,7 @@ def move_down_right(state, current_position, height, width):
 
 
 def get_new_sate(state, current_x, current_y, new_x, new_y):
-    new_state = copy.deepcopy(state);
+    new_state = copy.deepcopy(state)
     new_state[current_y][current_x], new_state[new_y][new_x] = new_state[new_y][new_x], new_state[current_y][current_x]
     return new_state
 
@@ -150,9 +150,9 @@ def at_minor_diagonal_corner(current_position, height, width):
             )
 
 
-def at_vertical_edge(current_position, height, width):
+def at_vertical_edge(current_position, width):
     return (current_position.x == 0 or current_position.x == width - 1)
 
 
-def at_horizontal_edge(current_position, height, width):
+def at_horizontal_edge(current_position, height):
     return (current_position.y == 0 or current_position.x == height - 1)# TODO might have a bug here
