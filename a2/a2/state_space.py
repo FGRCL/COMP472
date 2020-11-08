@@ -67,56 +67,64 @@ def move_up(state, current_position, height):
     cost = 2 if current_position.y == 0 else 1
     new_y = decrement_axis(current_position.y, height)
     new_state = get_new_sate(state, current_position.x, current_position.y, current_position.x, new_y)
-    return (new_state, cost)
+    new_position = Position(current_position.x, new_y)
+    return new_state, new_position, cost
 
 
 def move_down(state, current_position, height):
     cost = 2 if current_position.y == height - 1 else 1
     new_y = increment_axis(current_position.y, height)
     new_state = get_new_sate(state, current_position.x, current_position.y, current_position.x, new_y)
-    return (new_state, cost)
+    new_position = Position(current_position.x, new_y)
+    return new_state, new_position, cost
 
 
 def move_left(state, current_position, width):
     cost = 2 if current_position.x == 0 else 1
     new_x = decrement_axis(current_position.x, width)
     new_state = get_new_sate(state, current_position.x, current_position.y, new_x, current_position.y)
-    return (new_state, cost)
+    new_position = Position(new_x, current_position.y)
+    return new_state, new_position, cost
 
 
 def move_right(state, current_position, width):
     cost = 2 if current_position.x == width - 1 else 1
     new_x = increment_axis(current_position.x, width)
     new_state = get_new_sate(state, current_position.x, current_position.y, new_x, current_position.y)
-    return (new_state, cost)
+    new_position = Position(new_x, current_position.y)
+    return new_state, new_position, cost
 
 
 def move_up_right(state, current_position, height, width):
     new_x = increment_axis(current_position.x, width)
     new_y = decrement_axis(current_position.y, height)
     new_state = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
-    return (new_state, 3)
+    new_position = Position(new_x, new_y)
+    return new_state, new_position, 3
 
 
 def move_up_left(state, current_position, height, width):
     new_x = decrement_axis(current_position.x, width)
     new_y = decrement_axis(current_position.y, height)
     new_state = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
-    return (new_state, 3)
+    new_position = Position(new_x, new_y)
+    return new_state, new_position, 3
 
 
 def move_down_left(state, current_position, height, width):
     new_x = decrement_axis(current_position.x, width)
     new_y = increment_axis(current_position.y, height)
     new_state = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
-    return (new_state, 3)
+    new_position = Position(new_x, new_y)
+    return new_state, new_position, 3
 
 
 def move_down_right(state, current_position, height, width):
     new_x = increment_axis(current_position.x, width)
     new_y = increment_axis(current_position.y, height)
     new_state = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
-    return (new_state, 3)
+    new_position = Position(new_x, new_y)
+    return new_state, new_position, 3
 
 
 def get_new_sate(state, current_x, current_y, new_x, new_y):
@@ -151,8 +159,9 @@ def at_minor_diagonal_corner(current_position, height, width):
 
 
 def at_vertical_edge(current_position, width):
-    return (current_position.x == 0 or current_position.x == width - 1)
+    return current_position.x == 0 or current_position.x == width - 1
 
 
 def at_horizontal_edge(current_position, height):
-    return (current_position.y == 0 or current_position.x == height - 1)# TODO might have a bug here
+    return current_position.y == 0 or current_position.x == height - 1
+    # TODO might have a bug here
