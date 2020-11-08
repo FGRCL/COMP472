@@ -538,3 +538,107 @@ def test_successor_4x4_minor_corner():
     assert len(result) == len(expected_successors)
     for successor in result:
         assert successor in expected_successors
+
+
+def test_successor_4x4_horizontal_edge_up():
+    # given
+    current_state = [
+        [1, 0, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 15, 2]
+    ]
+    current_position = Position(1, 0)
+
+    # when
+    result = list(state_space.successors(current_state, current_position))
+
+    # then
+    expected_successors = [
+        (
+            [
+                [0, 1, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12],
+                [13, 14, 15, 2]
+            ],
+            Position(0, 0),
+            1
+        ),
+        (
+            [
+                [1, 3, 0, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12],
+                [13, 14, 15, 2]
+            ],
+            Position(2, 0),
+            1
+        ),
+        (
+            [
+                [1, 6, 3, 4],
+                [5, 0, 7, 8],
+                [9, 10, 11, 12],
+                [13, 14, 15, 2]
+            ],
+            Position(1, 1),
+            1
+        )
+    ]
+
+    assert len(result) == len(expected_successors)
+    for successor in result:
+        assert successor in expected_successors
+
+
+def test_successor_4x4_horizontal_edge_down():
+    # given
+    current_state = [
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12],
+        [13, 14, 0, 15]
+    ]
+    current_position = Position(2, 3)
+
+    # when
+    result = list(state_space.successors(current_state, current_position))
+
+    # then
+    expected_successors = [
+        (
+            [
+                [1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12],
+                [13, 14, 15, 0]
+            ],
+            Position(3, 3),
+            1
+        ),
+        (
+            [
+                [1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 11, 12],
+                [13, 0, 14, 15]
+            ],
+            Position(1, 3),
+            1
+        ),
+        (
+            [
+                [1, 2, 3, 4],
+                [5, 6, 7, 8],
+                [9, 10, 0, 12],
+                [13, 14, 11, 15]
+            ],
+            Position(2, 2),
+            1
+        )
+    ]
+
+    assert len(result) == len(expected_successors)
+    for successor in result:
+        assert successor in expected_successors

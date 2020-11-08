@@ -163,5 +163,4 @@ def at_vertical_edge(current_position, width):
 
 
 def at_horizontal_edge(current_position, height):
-    return current_position.y == 0 or current_position.x == height - 1
-    # TODO might have a bug here
+    return current_position.y == 0 or current_position.y == height - 1
