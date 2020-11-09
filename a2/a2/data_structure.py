@@ -2,7 +2,6 @@ import heapq
 from a2.game_node import Node
 from typing import List
 
-# TODO hashing matrices to strings could be problematic for very large matrices
 class OpenList(object):
 
     def __init__(self, initial_list: List[Node]):
@@ -38,5 +37,4 @@ class ClosedList(object):
         return self
 
     def __contains__(self, node: Node):
-        # TODO could maybe optimize
         return str(node.state) in self._data
