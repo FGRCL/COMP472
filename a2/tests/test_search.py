@@ -40,18 +40,19 @@ def test_generate_start_state():
         Position(3, 1)
     )
 
-    for i in range(100):
+    for i in range(10000):
         choice = random.choice(list(successors(state[0], state[1])))
         state = (choice[0], choice[1])
 
     print(state)
-    assert False
+    assert True
+
 
 def test_ucs():
     # given
     state = [
-        [4, 5, 1, 2],
-        [0, 6, 3, 7]
+        [3, 4, 2, 5],
+        [7, 0, 1, 6]
     ]
 
     goals = [

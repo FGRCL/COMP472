@@ -20,11 +20,12 @@ class UniformCostSearch(SearchAlgorithmInterface):
 
         current_node = open.pop()
         closed += current_node
-        while not is_goal(current_node, goals):
+        while not is_goal(current_node.state, goals):
             for successor in successors(current_node.state, current_node.position):
                 new_node = Node(successor[0], successor[1], current_node.cost+successor[2], current_node)
-                if new_node not in closed:  # TODO str(list) might result in collisions, not sure
+                if new_node not in closed:
                     open.push(new_node)
+                open.replace_if_smaller(new_node)
             closed += current_node
             current_node = open.pop()
         return current_node
