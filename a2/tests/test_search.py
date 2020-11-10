@@ -103,6 +103,7 @@ def test_ucs_4x2():
     print(result)
 
 
+# Don't run this, it crashed my computer
 @unittest.skip
 def test_ucs_10x10():
     # given
