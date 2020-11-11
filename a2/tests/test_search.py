@@ -120,8 +120,6 @@ def test_ucs_10x10():
 
     goal = np.arange(1, 101).reshape((10, 10))
     goal[9][9] = 0
-    print(np.transpose(goal))
-    print(goal)
 
     goals = [
         goal.data,

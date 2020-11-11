@@ -1,4 +1,4 @@
-from a2.heuristic import Heuristic
+from a2.heuristic import NaiveHeuristic
 
 
 def test_naive_4x2_0():
@@ -9,7 +9,7 @@ def test_naive_4x2_0():
     ]
 
     # when
-    result = Heuristic.naive.heuristic_function(state)
+    result = NaiveHeuristic.evaluate(state)
 
     # then
     assert result == 0
@@ -23,7 +23,7 @@ def test_naive_4x2_1():
     ]
 
     # when
-    result = Heuristic.naive.heuristic_function(state)
+    result = NaiveHeuristic.evaluate(state)
 
     # then
     assert result == 1
@@ -40,7 +40,7 @@ def test_naive_5x5_0():
     ]
 
     # when
-    result = Heuristic.naive.heuristic_function(state)
+    result = NaiveHeuristic.evaluate(state)
 
     # then
     assert result == 0
@@ -57,7 +57,7 @@ def test_naive_5x5_1():
     ]
 
     # when
-    result = Heuristic.naive.heuristic_function(state)
+    result = NaiveHeuristic.evaluate(state)
 
     # then
     assert result == 1
