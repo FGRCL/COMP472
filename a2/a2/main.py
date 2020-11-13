@@ -6,19 +6,31 @@ from a2.search import SearchAlgorithmInterface, UniformCostSearch
 
 
 class HeuristicChoice(Enum):
-    naive = "naive", NaiveHeuristic
+    naive = NaiveHeuristic
 
-    def __init__(self, val: str, heuristic: HeuristicInterface):
-        self.val = val
+    def __init__(self, heuristic: HeuristicInterface):
         self.heuristic = heuristic
+
+    def __str__(self):
+        return self.name
+
+    @staticmethod
+    def from_string(name):
+        return HeuristicChoice[name]
 
 
 class SearchAlgorithmChoice(Enum):
-    ucs = "ucs", UniformCostSearch
+    ucs = UniformCostSearch
 
-    def __init__(self, val: str, algorithm: SearchAlgorithmInterface):
-        self.val = val
+    def __init__(self, algorithm: SearchAlgorithmInterface):
         self.algorithm = algorithm
+
+    def __str__(self):
+        return self.name
+
+    @staticmethod
+    def from_string(name):
+        return SearchAlgorithmChoice[name]
 
 
 def main(input_puzzle, solution_file, search_file, search_timeout, algorithm: SearchAlgorithmInterface, heuristic: HeuristicInterface, width: int, height: int):
@@ -57,8 +69,8 @@ if __name__ == "__main__":
     parser.add_argument("--searchfile", "-sf", metavar="search file", help="the path to the file to output the algorithm's searched states to", type=open)
     parser.add_argument("--searchtimeout", "-t", metavar="timeout", help="the allotted time for a search algorithm to find a solution in seconds", type=int, default=60)
     parser.add_argument("--dimensions", "-d", metavar="dimensions", help="the dimensions of the puzzle in the format: {width}x{height}. ex.: 4x2", type=str, default="4x2")
-    parser.add_argument("--algorithm", "-a", metavar="search algorithm", help="the search algorithm to use", choices=SearchAlgorithmChoice, default=SearchAlgorithmChoice.ucs)
-    parser.add_argument("--heuristic", "-he", metavar="heuristic", help="the heuristic to use for GBFS and A*", choices=HeuristicChoice, default=HeuristicChoice.naive)
+    parser.add_argument("--algorithm", "-a", help="the search algorithm to use", choices=SearchAlgorithmChoice, type=SearchAlgorithmChoice.from_string, default=SearchAlgorithmChoice.ucs)
+    parser.add_argument("--heuristic", "-he", help="the heuristic to use for GBFS and A*", choices=HeuristicChoice, type=HeuristicChoice.from_string, default=HeuristicChoice.naive)
 
     args = parser.parse_args()
     dimensions = args.dimensions.split("x")
