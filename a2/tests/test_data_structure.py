@@ -13,8 +13,8 @@ def test_contains():
         [1, 2, 3, 4]
     ]
 
-    inserted_node = Node(inserted_state, Position(0, 0), 0, None)
-    other_node = Node(other_state, Position(0, 0), 0, None)
+    inserted_node = Node(inserted_state, Position(0, 0), 1, 2, 3, 0, None)
+    other_node = Node(other_state, Position(0, 0), 1, 2, 3, 0, None)
 
     testee = ClosedList()
 

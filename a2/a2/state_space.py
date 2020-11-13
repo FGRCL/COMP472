@@ -66,71 +66,72 @@ def minor_axis_moves(state, current_position, height, width):
 def move_up(state, current_position, height):
     cost = 2 if current_position.y == 0 else 1
     new_y = decrement_axis(current_position.y, height)
-    new_state = get_new_sate(state, current_position.x, current_position.y, current_position.x, new_y)
+    new_state, moved_token = get_new_sate(state, current_position.x, current_position.y, current_position.x, new_y)
     new_position = Position(current_position.x, new_y)
-    return new_state, new_position, cost
+    return new_state, new_position, cost, moved_token
 
 
 def move_down(state, current_position, height):
     cost = 2 if current_position.y == height - 1 else 1
     new_y = increment_axis(current_position.y, height)
-    new_state = get_new_sate(state, current_position.x, current_position.y, current_position.x, new_y)
+    new_state, moved_token = get_new_sate(state, current_position.x, current_position.y, current_position.x, new_y)
     new_position = Position(current_position.x, new_y)
-    return new_state, new_position, cost
+    return new_state, new_position, cost, moved_token
 
 
 def move_left(state, current_position, width):
     cost = 2 if current_position.x == 0 else 1
     new_x = decrement_axis(current_position.x, width)
-    new_state = get_new_sate(state, current_position.x, current_position.y, new_x, current_position.y)
+    new_state, moved_token = get_new_sate(state, current_position.x, current_position.y, new_x, current_position.y)
     new_position = Position(new_x, current_position.y)
-    return new_state, new_position, cost
+    return new_state, new_position, cost, moved_token
 
 
 def move_right(state, current_position, width):
     cost = 2 if current_position.x == width - 1 else 1
     new_x = increment_axis(current_position.x, width)
-    new_state = get_new_sate(state, current_position.x, current_position.y, new_x, current_position.y)
+    new_state, moved_token = get_new_sate(state, current_position.x, current_position.y, new_x, current_position.y)
     new_position = Position(new_x, current_position.y)
-    return new_state, new_position, cost
+    return new_state, new_position, cost, moved_token
 
 
 def move_up_right(state, current_position, height, width):
     new_x = increment_axis(current_position.x, width)
     new_y = decrement_axis(current_position.y, height)
-    new_state = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
+    new_state, moved_token = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
     new_position = Position(new_x, new_y)
-    return new_state, new_position, 3
+    return new_state, new_position, 3, moved_token
 
 
 def move_up_left(state, current_position, height, width):
     new_x = decrement_axis(current_position.x, width)
     new_y = decrement_axis(current_position.y, height)
-    new_state = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
+    new_state, moved_token = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
     new_position = Position(new_x, new_y)
-    return new_state, new_position, 3
+    return new_state, new_position, 3, moved_token
 
 
 def move_down_left(state, current_position, height, width):
     new_x = decrement_axis(current_position.x, width)
     new_y = increment_axis(current_position.y, height)
-    new_state = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
+    new_state, moved_token = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
     new_position = Position(new_x, new_y)
-    return new_state, new_position, 3
+    return new_state, new_position, 3, moved_token
 
 
 def move_down_right(state, current_position, height, width):
     new_x = increment_axis(current_position.x, width)
     new_y = increment_axis(current_position.y, height)
-    new_state = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
+    new_state, moved_token = get_new_sate(state, current_position.x, current_position.y, new_x, new_y)
     new_position = Position(new_x, new_y)
-    return new_state, new_position, 3
+    return new_state, new_position, 3, moved_token
 
 
 def get_new_sate(state, current_x, current_y, new_x, new_y):
     new_state = copy.deepcopy(state)
     new_state[current_y][current_x], new_state[new_y][new_x] = new_state[new_y][new_x], new_state[current_y][current_x]
-    return new_state
+    moved_token = new_state[current_y][current_x]
+    return new_state, moved_token
 
 
 def increment_axis(index, length):

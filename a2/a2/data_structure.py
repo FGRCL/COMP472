@@ -6,7 +6,7 @@ from typing import List
 class OpenList(object):
 
     def __init__(self, initial_list: List[Node]):
-        self._heap = [(node.cost, key, node) for key, node in enumerate(initial_list)]
+        self._heap = [(node.sorting_key, key, node) for key, node in enumerate(initial_list)]
         self._hash_map = {}
         for node in initial_list:
             self._hash_map[str(node.state)] = node
@@ -14,7 +14,7 @@ class OpenList(object):
         heapq.heapify(self._heap)
 
     def push(self, node: Node):
-        heapq.heappush(self._heap, (node.cost, self._key, node))
+        heapq.heappush(self._heap, (node.sorting_key, self._key, node))
         self._hash_map[str(node.state)] = node
         self._key += 1
 
@@ -23,8 +23,11 @@ class OpenList(object):
 
     def replace_if_smaller(self, new_node: Node):
         node = self._hash_map[str(new_node.state)]
-        if node.state == new_node.state and node.cost > new_node.cost:
+        if node.state == new_node.state and node.sorting_key > new_node.sorting_key:
             node.cost = new_node.cost
+            node.total_cost = new_node.total_cost
+            node.moved_token = new_node.moved_token
+            node.sorting_key = new_node.sorting_key
             node.parent = new_node.parent
 
 

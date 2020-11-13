@@ -14,7 +14,7 @@ class SearchAlgorithmInterface(ABCMeta):
 class UniformCostSearch(SearchAlgorithmInterface):
     @staticmethod
     def find(state, goals):
-        start_node = Node(state, find_element(state, 0), 0, None)
+        start_node = Node(state, find_element(state, 0), 0, 0, 0, 0, None)  #TODO to avoid a null exception we set the sorting key at 0, We need to double check it wont be problem with other search algorithms
         open = OpenList([start_node])
         closed = ClosedList()
 
@@ -22,7 +22,7 @@ class UniformCostSearch(SearchAlgorithmInterface):
         closed += current_node
         while not is_goal(current_node.state, goals):  # TODO do we need to check if the open list is empty?
             for successor in successors(current_node.state, current_node.position):
-                new_node = Node(successor[0], successor[1], current_node.cost+successor[2], current_node)
+                new_node = Node(successor[0], successor[1], successor[2], current_node.total_cost+successor[2], successor[3], current_node.sorting_key+successor[2], current_node)
                 if new_node not in closed:
                     open.push(new_node)
                 open.replace_if_smaller(new_node)
