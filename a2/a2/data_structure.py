@@ -23,7 +23,7 @@ class OpenList(object):
 
     def replace_if_smaller(self, new_node: Node):
         node = self._hash_map[str(new_node.state)]
-        if node.state == new_node.state:
+        if node.state == new_node.state and node.cost > new_node.cost:
             node.cost = new_node.cost
             node.parent = new_node.parent
 
@@ -38,5 +38,4 @@ class ClosedList(object):
         return self
 
     def __contains__(self, node: Node):
-        # TODO could maybe optimize
         return str(node.state) in self._data
