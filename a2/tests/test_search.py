@@ -99,7 +99,7 @@ def test_ucs_4x2():
     result = UniformCostSearch.find(state, goals)
 
     # then
-    assert result.state in goals
+    assert result[0].state in goals
     print(result)
 
 
