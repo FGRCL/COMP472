@@ -32,3 +32,29 @@ class ManhattanHeuristic(HeuristicInterface):
             for b, g in ((curr_state.index(i), goal.index(i)) for i in range(1,8)))
 
         return min(standard_score, nonstandard_score)
+
+
+class SumOfPermutationInversions(HeuristicInterface):
+    @staticmethod
+    def evaluate(state):
+        curr_state = [val for state in state for val in state]
+
+        # Standard Score
+        standard_score = 0
+        for i in range(0, len(curr_state)):
+            for j in range(i + 1, len(curr_state)):
+                if ((curr_state[i] > curr_state[j]) and curr_state[j] != 0):
+                    standard_score += 1
+
+        # Non-Standard Score
+        nonstandard_score = 0
+        for i in range(0, len(curr_state)):
+            for j in range(i + 1, len(curr_state)):
+                if ((curr_state[i] % 2) != 0): # odd case
+                    if ((curr_state[j] % 2) != 0 and (curr_state[i] > curr_state[j])):
+                        nonstandard_score += 1
+                elif ((curr_state[i] % 2) == 0): # even case
+                    if (((curr_state[j] % 2) != 0) or (((curr_state[j] % 2) == 0) and (curr_state[i] > curr_state[j]) and curr_state[j] != 0)):
+                        nonstandard_score += 1
+
+        return min(standard_score, nonstandard_score)
