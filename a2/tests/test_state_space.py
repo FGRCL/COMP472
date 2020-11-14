@@ -21,6 +21,7 @@ def test_successors_4x2_major_corner():
                 [5, 6, 7, 1],
             ],
             Position(3, 0),
+            1,
             1
         ),
         (
@@ -29,7 +30,8 @@ def test_successors_4x2_major_corner():
                 [5, 6, 0, 7],
             ],
             Position(2, 1),
-            1
+            1,
+            7
         ),
         (
             [
@@ -37,7 +39,8 @@ def test_successors_4x2_major_corner():
                 [0, 6, 7, 5],
             ],
             Position(0, 1),
-            2
+            2,
+            5
         ),
         (
             [
@@ -45,6 +48,7 @@ def test_successors_4x2_major_corner():
                 [5, 6, 7, 3],
             ],
             Position(2, 0),
+            3,
             3
         ),
         (
@@ -53,7 +57,8 @@ def test_successors_4x2_major_corner():
                 [5, 6, 7, 4],
             ],
             Position(0, 0),
-            3
+            3,
+            4
         )
     ]
 
@@ -81,6 +86,7 @@ def test_successors_4x2_minor_corner():
                 [1, 6, 7, 5]
             ],
             Position(0, 0),
+            1,
             1
         ),
         (
@@ -89,7 +95,8 @@ def test_successors_4x2_minor_corner():
                 [6, 0, 7, 5]
             ],
             Position(1, 1),
-            1
+            1,
+            6
         ),
         (
             [
@@ -97,7 +104,8 @@ def test_successors_4x2_minor_corner():
                 [5, 6, 7, 0]
             ],
             Position(3, 1),
-            2
+            2,
+            5
         ),
         (
             [
@@ -105,7 +113,8 @@ def test_successors_4x2_minor_corner():
                 [2, 6, 7, 5]
             ],
             Position(1, 0),
-            3
+            3,
+            2
         ),
         (
             [
@@ -113,7 +122,8 @@ def test_successors_4x2_minor_corner():
                 [4, 6, 7, 5]
             ],
             Position(3, 0),
-            3
+            3,
+            4
         )
     ]
 
@@ -141,6 +151,7 @@ def test_successor_4x2_horizontal_edge_up():
                 [5, 6, 7, 2]
             ],
             Position(0, 0),
+            1,
             1
         ),
         (
@@ -149,7 +160,8 @@ def test_successor_4x2_horizontal_edge_up():
                 [5, 6, 7, 2]
             ],
             Position(2, 0),
-            1
+            1,
+            3
         ),
         (
             [
@@ -157,7 +169,8 @@ def test_successor_4x2_horizontal_edge_up():
                 [5, 0, 7, 2]
             ],
             Position(1, 1),
-            1
+            1,
+            6
         )
     ]
 
@@ -185,7 +198,8 @@ def test_successor_4x2_horizontal_edge_down():
                 [5, 6, 3, 7]
             ],
             Position(2, 0),
-            1
+            1,
+            3
         ),
         (
             [
@@ -193,7 +207,8 @@ def test_successor_4x2_horizontal_edge_down():
                 [5, 6, 7, 0]
             ],
             Position(3, 1),
-            1
+            1,
+            7
         ),
         (
             [
@@ -201,7 +216,8 @@ def test_successor_4x2_horizontal_edge_down():
                 [5, 0, 6, 7]
             ],
             Position(1, 1),
-            1
+            1,
+            6
         )
     ]
 
@@ -233,7 +249,8 @@ def test_successor_4x4_middle():
                 [13, 14, 15, 7]
             ],
             Position(2, 0),
-            1
+            1,
+            3
         ),
         (
             [
@@ -243,7 +260,8 @@ def test_successor_4x4_middle():
                 [13, 14, 15, 7]
             ],
             Position(2, 2),
-            1
+            1,
+            11
         ),
         (
             [
@@ -253,7 +271,8 @@ def test_successor_4x4_middle():
                 [13, 14, 15, 7]
             ],
             Position(1, 1),
-            1
+            1,
+            6
         ),
         (
             [
@@ -263,7 +282,8 @@ def test_successor_4x4_middle():
                 [13, 14, 15, 7]
             ],
             Position(3, 1),
-            1
+            1,
+            8
         )
     ]
 
@@ -295,7 +315,8 @@ def test_successor_4x4_vertical_edge_left():
                 [13, 14, 15, 9]
             ],
             Position(0, 1),
-            1
+            1,
+            5
         ),
         (
             [
@@ -305,7 +326,8 @@ def test_successor_4x4_vertical_edge_left():
                 [0, 14, 15, 9]
             ],
             Position(0, 3),
-            1
+            1,
+            13
         ),
         (
             [
@@ -315,7 +337,8 @@ def test_successor_4x4_vertical_edge_left():
                 [13, 14, 15, 9]
             ],
             Position(1, 2),
-            1
+            1,
+            10
         )
     ]
 
@@ -347,7 +370,8 @@ def test_successor_4x4_vertical_edge_right():
                 [13, 14, 15, 13]
             ],
             Position(2, 1),
-            1
+            1,
+            7
         ),
         (
             [
@@ -357,7 +381,8 @@ def test_successor_4x4_vertical_edge_right():
                 [13, 14, 15, 13]
             ],
             Position(3, 0),
-            1
+            1,
+            4
         ),
         (
             [
@@ -367,7 +392,8 @@ def test_successor_4x4_vertical_edge_right():
                 [13, 14, 15, 13]
             ],
             Position(3, 2),
-            1
+            1,
+            12
         )
     ]
 
@@ -399,7 +425,8 @@ def test_successor_4x4_major_corner():
                 [13, 14, 15, 1]
             ],
             Position(1, 0),
-            1
+            1,
+            2
         ),
         (
             [
@@ -409,7 +436,8 @@ def test_successor_4x4_major_corner():
                 [13, 14, 15, 1]
             ],
             Position(0, 1),
-            1
+            1,
+            5
         ),
         (
             [
@@ -419,7 +447,8 @@ def test_successor_4x4_major_corner():
                 [13, 14, 15, 1]
             ],
             Position(3, 0),
-            2
+            2,
+            4
         ),
         (
             [
@@ -429,7 +458,8 @@ def test_successor_4x4_major_corner():
                 [0, 14, 15, 1]
             ],
             Position(0, 3),
-            2
+            2,
+            13
         ),
         (
             [
@@ -439,7 +469,8 @@ def test_successor_4x4_major_corner():
                 [13, 14, 15, 0]
             ],
             Position(3, 3),
-            3
+            3,
+            1
         ),
         (
             [
@@ -449,7 +480,8 @@ def test_successor_4x4_major_corner():
                 [13, 14, 15, 1]
             ],
             Position(1, 1),
-            3
+            3,
+            6
         )
     ]
 
@@ -481,7 +513,8 @@ def test_successor_4x4_minor_corner():
                 [13, 14, 15, 4]
             ],
             Position(2, 0),
-            1
+            1,
+            3
         ),
         (
             [
@@ -491,7 +524,8 @@ def test_successor_4x4_minor_corner():
                 [13, 14, 15, 4]
             ],
             Position(3, 1),
-            1
+            1,
+            8
         ),
         (
             [
@@ -501,7 +535,8 @@ def test_successor_4x4_minor_corner():
                 [13, 14, 15, 0]
             ],
             Position(3, 3),
-            2
+            2,
+            4
         ),
         (
             [
@@ -511,7 +546,8 @@ def test_successor_4x4_minor_corner():
                 [13, 14, 15, 4]
             ],
             Position(0, 0),
-            2
+            2,
+            1
         ),
         (
             [
@@ -521,7 +557,8 @@ def test_successor_4x4_minor_corner():
                 [13, 14, 15, 4]
             ],
             Position(2, 1),
-            3
+            3,
+            7
         ),
         (
             [
@@ -531,7 +568,8 @@ def test_successor_4x4_minor_corner():
                 [0, 14, 15, 4]
             ],
             Position(0, 3),
-            3
+            3,
+            13
         )
     ]
 
@@ -563,6 +601,7 @@ def test_successor_4x4_horizontal_edge_up():
                 [13, 14, 15, 2]
             ],
             Position(0, 0),
+            1,
             1
         ),
         (
@@ -573,7 +612,8 @@ def test_successor_4x4_horizontal_edge_up():
                 [13, 14, 15, 2]
             ],
             Position(2, 0),
-            1
+            1,
+            3
         ),
         (
             [
@@ -583,7 +623,8 @@ def test_successor_4x4_horizontal_edge_up():
                 [13, 14, 15, 2]
             ],
             Position(1, 1),
-            1
+            1,
+            6
         )
     ]
 
@@ -615,7 +656,8 @@ def test_successor_4x4_horizontal_edge_down():
                 [13, 14, 15, 0]
             ],
             Position(3, 3),
-            1
+            1,
+            15
         ),
         (
             [
@@ -625,7 +667,8 @@ def test_successor_4x4_horizontal_edge_down():
                 [13, 0, 14, 15]
             ],
             Position(1, 3),
-            1
+            1,
+            14
         ),
         (
             [
@@ -635,7 +678,8 @@ def test_successor_4x4_horizontal_edge_down():
                 [13, 14, 11, 15]
             ],
             Position(2, 2),
-            1
+            1,
+            11
         )
     ]
 
