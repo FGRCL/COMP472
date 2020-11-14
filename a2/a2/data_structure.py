@@ -2,6 +2,7 @@ import heapq
 from a2.game_node import Node
 from typing import List
 
+
 class OpenList(object):
 
     def __init__(self, initial_list: List[Node]):

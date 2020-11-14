@@ -1,4 +1,12 @@
 [[package]]
+name = "aenum"
+version = "2.2.4"
+description = "Advanced Enumerations (compatible with Python's stdlib Enum), NamedTuples, and NamedConstants"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "atomicwrites"
 version = "1.4.0"
 description = "Atomic file writes."
@@ -126,9 +134,14 @@ python-versions = "*"
 [metadata]
 lock-version = "1.0"
 python-versions = "^3.8"
-content-hash = "52d0001217674ecd21b94320bbe1df13848128f22e7d4d379b442442886b695a"
+content-hash = "20d4ce7957d3410c7de84174c06d027b5ea5367efc0ac467c6fcbf0fbe10dd88"
 
 [metadata.files]
+aenum = [
+    {file = "aenum-2.2.4-py2-none-any.whl", hash = "sha256:85adabd63183d283250bf7acd9fa23c7e45b1c8d1efbb84b233160f3c438dc18"},
+    {file = "aenum-2.2.4-py3-none-any.whl", hash = "sha256:bcb4fd350d36af336b6b5898e5d89f76344621d9c1b2de69c81acf1d3e6b1145"},
+    {file = "aenum-2.2.4.tar.gz", hash = "sha256:81828d1fbe20b6b188d75b21a0fa936d7d929d839ef843ef385d9c2a97082864"},
+]
 atomicwrites = [
     {file = "atomicwrites-1.4.0-py2.py3-none-any.whl", hash = "sha256:6d1784dea7c0c8d4a5172b6c620f40b6e4cbfdf96d783691f2e1302a7b88e197"},
     {file = "atomicwrites-1.4.0.tar.gz", hash = "sha256:ae70396ad1a434f9c7046fd2dd196fc04b12f9e91ffb859164193be8b6168a7a"},
