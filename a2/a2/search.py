@@ -34,20 +34,6 @@ class UniformCostSearch(SearchAlgorithmInterface):
 
         return current_node, time.time() - start_time
 
-# class GreedyBestFirstSearch(SearchAlgorithmInterface):
-#     @staticmethod
-#     def find(state, goals):
-#         start_time = time.time()
-
-#         start_node = Node(state, find_element(state, 0), 0, 0, 0, 0, None)
-#         open = OpenList([start_node])
-#         closed = ClosedList()
-
-#         current_node = open.pop()
-#         closed += current_node
-#         while not is_goal(current_node.state, goals):
-#             for successor in successors(current_node.state, current_node.position):
-
 def is_goal(state, goals):
     return any([state == goal for goal in goals])
 
