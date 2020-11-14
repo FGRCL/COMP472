@@ -1,3 +1,4 @@
+import time
 from a2.game_node import Node
 from a2.data_structure import OpenList, ClosedList
 from a2.state_space import successors
@@ -8,12 +9,14 @@ from abc import ABCMeta, abstractmethod
 class SearchAlgorithmInterface(ABCMeta):
     @staticmethod
     @abstractmethod
-    def find(state, goals): raise NotImplemented
+    def find(state, goals, final_node): raise NotImplemented
 
 
 class UniformCostSearch(SearchAlgorithmInterface):
     @staticmethod
     def find(state, goals):
+        start_time = time.time()
+
         start_node = Node(state, find_element(state, 0), 0, 0, 0, 0, None)  #TODO to avoid a null exception we set the sorting key at 0, We need to double check it wont be problem with other search algorithms
         open = OpenList([start_node])
         closed = ClosedList()
@@ -28,8 +31,8 @@ class UniformCostSearch(SearchAlgorithmInterface):
                 open.replace_if_smaller(new_node)
             closed += current_node
             current_node = open.pop()
-        return current_node
 
+        return current_node, time.time() - start_time
 
 def is_goal(state, goals):
     return any([state == goal for goal in goals])
