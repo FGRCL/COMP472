@@ -36,27 +36,21 @@ class SearchAlgorithmChoice(Enum):
 def main(input_puzzle, solution_directory, search_file, search_timeout, algorithm: SearchAlgorithmChoice, heuristic: HeuristicChoice, width: int, height: int):
     goals = get_goals(width, height)
 
-    #TODO we might be able to solve different puzzles in parallel
+    # TODO we might be able to solve different puzzles in parallel
     puzzles = get_puzzles(input_puzzle, width, height)
     for i, puzzle in enumerate(puzzles):
-        with open('{}{}_{}_{}_solution.txt'.format(solution_directory, i, algorithm.name, heuristic.name), 'w+') as solution_file:
-            try:
-                final_node, exec_time = func_timeout(search_timeout, algorithm.algorithm.find, args=(puzzle, goals))
+        solution_file_path = '{}{}_{}_{}_solution.txt'.format(solution_directory, i, algorithm.name, heuristic.name)
+        puzzle_solver_worker(puzzle, goals, algorithm.algorithm, solution_file_path, search_timeout)
 
-                write_solution_file(final_node, solution_file, exec_time)
 
-            except FunctionTimedOut:
-                write_no_solution(solution_file)
-
-def puzzle_solver_worker(puzzle, solution_file_path, puzzle_number, algorithm_name, heuristic_name, search_timeout, goals, search_algorithm):
-    with open('{}{}_{}_{}_solution.txt'.format(solution_directory, puzzle_number, algorithm_name, heuristic_name), 'w+') as solution_file:
+def puzzle_solver_worker(puzzle, goals, search_algorithm, solution_file_path, search_timeout):
+    with open(solution_file_path, 'w+') as solution_file:
         try:
             final_node, exec_time = func_timeout(search_timeout, search_algorithm.find, args=(puzzle, goals))
-
             write_solution_file(final_node, solution_file, exec_time)
-
         except FunctionTimedOut:
             write_no_solution(solution_file)
+
 
 def get_puzzles(input_puzzle, width, height):
     puzzles = []
