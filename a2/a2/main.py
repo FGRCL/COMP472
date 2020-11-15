@@ -53,7 +53,6 @@ def puzzle_solver_worker(puzzle, goals, search_algorithm, heuristic, solution_fi
         try:
             final_node, exec_time, closed_list = func_timeout(search_timeout, search_algorithm.find, args=(puzzle, goals, heuristic))
             write_solution_file(final_node, solution_file, exec_time)
-            write_search_file(closed_list, search_file, search_algorithm)
         except FunctionTimedOut:
             write_no_solution(solution_file)
 
