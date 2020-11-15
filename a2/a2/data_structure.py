@@ -21,14 +21,18 @@ class OpenList(object):
     def pop(self):
         return heapq.heappop(self._heap)[2]
 
-    def replace_if_smaller(self, new_node: Node):
-        node = self._hash_map[str(new_node.state)]
-        if node.state == new_node.state and node.sorting_key > new_node.sorting_key:
-            node.cost = new_node.cost
-            node.total_cost = new_node.total_cost
-            node.moved_token = new_node.moved_token
-            node.sorting_key = new_node.sorting_key
-            node.parent = new_node.parent
+    def replace_if_smaller(self, new_node:Node):
+        if str(new_node.state) in self._hash_map:
+            node = self._hash_map[str(new_node.state)]
+            if node.state == new_node.state and node.sorting_key > new_node.sorting_key:
+                node.cost = new_node.cost
+                node.heuristic_score = new_node.heuristic_score
+                node.total_cost = new_node.total_cost
+                node.moved_token = new_node.moved_token
+                node.sorting_key = new_node.sorting_key
+                node.parent = new_node.parent
+                return True
+        return False
 
 
 class ClosedList(object):
