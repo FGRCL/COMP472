@@ -1,4 +1,5 @@
-from a2.search import UniformCostSearch, is_goal
+from a2.search import UniformCostSearch, GreedyBestFirstSearch, is_goal
+from a2.heuristic import NaiveHeuristic, ManhattanHeuristic, SumOfPermutationInversions
 from a2.state_space import successors
 from a2.position import Position
 import numpy as np
@@ -102,7 +103,6 @@ def test_ucs_4x2():
     assert result[0].state in goals
     print(result)
 
-
 # Don't run this, it crashed my computer
 @unittest.skip
 def test_ucs_10x10():
@@ -132,3 +132,58 @@ def test_ucs_10x10():
     # then
     assert result.state in goals
     print(result)
+
+def test_gbfs_4x2():
+    # given
+    state = [
+        [2, 5, 7, 1],
+        [3, 0, 6, 4]
+    ]
+
+    goals = [
+        [
+            [1, 2, 3, 4],
+            [5, 6, 7, 0]
+        ],
+        [
+            [1, 3, 5, 7],
+            [2, 4, 6, 0]
+        ]
+    ]
+
+    # when
+    result1 = GreedyBestFirstSearch.find(state, goals, NaiveHeuristic)
+    result2 = GreedyBestFirstSearch.find(state, goals, ManhattanHeuristic)
+    result3 = GreedyBestFirstSearch.find(state, goals, SumOfPermutationInversions)
+
+    # then
+    assert result1[0].state in goals
+    assert result2[0].state in goals
+    assert result3[0].state in goals
+
+def test_gbfs_3x3():
+    # given
+    state = [
+        [1, 4, 5],
+        [2, 3, 7],
+        [8, 0, 6]
+    ]
+
+    goals = [
+        [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 0]
+        ]
+    ]
+
+    # when
+    result1 = GreedyBestFirstSearch.find(state, goals, NaiveHeuristic) # this takes a loot longer than all the others...
+    result2 = GreedyBestFirstSearch.find(state, goals, ManhattanHeuristic)
+    result3 = GreedyBestFirstSearch.find(state, goals, SumOfPermutationInversions)
+
+    # then
+    assert result1[0].state in goals
+    assert result2[0].state in goals
+    assert result3[0].state in goals
+
