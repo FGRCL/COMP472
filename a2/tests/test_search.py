@@ -96,7 +96,7 @@ def test_ucs_4x2():
     ]
 
     # when
-    result = UniformCostSearch.find(state, goals)
+    result = UniformCostSearch.find(state, goals, None)
 
     # then
     assert result[0].state in goals
@@ -127,7 +127,7 @@ def test_ucs_10x10():
     ]
 
     # when
-    result = UniformCostSearch.find(state, goals)
+    result = UniformCostSearch.find(state, goals, None)
 
     # then
     assert result.state in goals

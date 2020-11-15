@@ -62,7 +62,34 @@ def test_naive_5x5_1():
     # then
     assert result == 1
 
-def test_manhattan_3x3():
+def test_manhattan_2x4():
+    #given 
+    state = [
+        [1, 2, 7, 4],
+        [5, 6, 3, 0]
+    ]
+
+    # when
+    result = ManhattanHeuristic.evaluate(state)
+
+    #then 
+    assert result == 2
+
+def test_manhattan_3x3_0():
+    #given 
+    state = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ]
+
+    # when
+    result = ManhattanHeuristic.evaluate(state)
+
+    #then 
+    assert result == 0
+
+def test_manhattan_3x3_1():
     #given 
     state = [
         [7, 2, 4],
@@ -76,18 +103,6 @@ def test_manhattan_3x3():
     #then 
     assert result == 14
 
-def test_manhattan_2x4():
-    #given 
-    state = [
-        [1, 2, 7, 4],
-        [5, 6, 3, 0]
-    ]
-
-    # when
-    result = ManhattanHeuristic.evaluate(state)
-
-    #then 
-    assert result == 2
 
 def test_permutations_2x4():
     #given 

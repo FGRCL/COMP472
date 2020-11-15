@@ -1,12 +1,14 @@
 import argparse
 import numpy as np
 from enum import Enum
-from a2.heuristic import HeuristicInterface, NaiveHeuristic
-from a2.search import SearchAlgorithmInterface, UniformCostSearch
+from a2.heuristic import HeuristicInterface, NaiveHeuristic, ManhattanHeuristic, SumOfPermutationInversions
+from a2.search import SearchAlgorithmInterface, UniformCostSearch, GreedyBestFirstSearch
 from a2.output_files import write_solution_file, write_no_solution
 from func_timeout import func_timeout, FunctionTimedOut
 class HeuristicChoice(Enum):
     naive = NaiveHeuristic
+    manhattan = ManhattanHeuristic
+    permutations = SumOfPermutationInversions
 
     def __init__(self, heuristic: HeuristicInterface):
         self.heuristic = heuristic
@@ -21,6 +23,7 @@ class HeuristicChoice(Enum):
 
 class SearchAlgorithmChoice(Enum):
     ucs = UniformCostSearch
+    gbfs = GreedyBestFirstSearch
 
     def __init__(self, algorithm: SearchAlgorithmInterface):
         self.algorithm = algorithm
@@ -40,13 +43,13 @@ def main(input_puzzle, solution_directory, search_file, search_timeout, algorith
     puzzles = get_puzzles(input_puzzle, width, height)
     for i, puzzle in enumerate(puzzles):
         solution_file_path = '{}{}_{}_{}_solution.txt'.format(solution_directory, i, algorithm.name, heuristic.name)
-        puzzle_solver_worker(puzzle, goals, algorithm.algorithm, solution_file_path, search_timeout)
+        puzzle_solver_worker(puzzle, goals, algorithm.algorithm, heuristic.heuristic, solution_file_path, search_timeout)
 
 
-def puzzle_solver_worker(puzzle, goals, search_algorithm, solution_file_path, search_timeout):
+def puzzle_solver_worker(puzzle, goals, search_algorithm, heuristic, solution_file_path, search_timeout):
     with open(solution_file_path, 'w+') as solution_file:
         try:
-            final_node, exec_time = func_timeout(search_timeout, search_algorithm.find, args=(puzzle, goals))
+            final_node, exec_time = func_timeout(search_timeout, search_algorithm.find, args=(puzzle, goals, heuristic))
             write_solution_file(final_node, solution_file, exec_time)
         except FunctionTimedOut:
             write_no_solution(solution_file)
