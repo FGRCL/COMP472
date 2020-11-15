@@ -22,7 +22,6 @@ class UniformCostSearch(SearchAlgorithmInterface):
         closed = ClosedList()
 
         current_node = open.pop()
-        closed += current_node
         while not is_goal(current_node.state, goals):  # TODO do we need to check if the open list is empty?
             for successor in successors(current_node.state, current_node.position):
                 new_node = Node(successor[0], successor[1], None, successor[2], current_node.total_cost+successor[2], successor[3], current_node.sorting_key+successor[2], current_node)
@@ -31,7 +30,7 @@ class UniformCostSearch(SearchAlgorithmInterface):
             closed += current_node
             current_node = open.pop()
 
-        return current_node, time.time() - start_time
+        return current_node, time.time() - start_time, closed
 
 class GreedyBestFirstSearch(SearchAlgorithmInterface):
     @staticmethod
@@ -43,7 +42,6 @@ class GreedyBestFirstSearch(SearchAlgorithmInterface):
         closed = ClosedList()
 
         current_node = open.pop()
-        closed += current_node
         while not is_goal(current_node.state, goals):
             for successor in successors(current_node.state, current_node.position):
                 heuristic_score = heuristic.evaluate(successor[0])
@@ -53,7 +51,7 @@ class GreedyBestFirstSearch(SearchAlgorithmInterface):
             closed += current_node
             current_node = open.pop()
 
-        return current_node, time.time() - start_time
+        return current_node, time.time() - start_time, closed
 
 class A_Star(SearchAlgorithmInterface):
     @staticmethod
@@ -65,7 +63,6 @@ class A_Star(SearchAlgorithmInterface):
         closed = ClosedList()
 
         current_node = open.pop()
-        closed += current_node
         while not is_goal(current_node.state, goals):
             for successor in successors(current_node.state, current_node.position):
                 heuristic_score = heuristic.evaluate(successor[0])
@@ -76,7 +73,7 @@ class A_Star(SearchAlgorithmInterface):
             closed += current_node
             current_node = open.pop()
 
-        return current_node, time.time() - start_time
+        return current_node, time.time() - start_time, closed
 
 
 def is_goal(state, goals):
