@@ -78,6 +78,7 @@ class A_Star(SearchAlgorithmInterface):
 
         return current_node, time.time() - start_time
 
+
 def is_goal(state, goals):
     return any([state == goal for goal in goals])
 
