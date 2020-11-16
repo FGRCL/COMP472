@@ -1,4 +1,4 @@
-from a2.heuristic import NaiveHeuristic, ManhattanHeuristic, SumOfPermutationInversions
+from a2.heuristic import NaiveHeuristic, ManhattanHeuristic, HammingDistance, SumOfPermutationInversions
 
 
 def test_naive_4x2_0():
@@ -80,7 +80,7 @@ def test_manhattan_3x3_0():
     state = [
         [1, 2, 3],
         [4, 5, 6],
-        [7, 8, 9]
+        [7, 8, 0]
     ]
 
     # when
@@ -103,6 +103,59 @@ def test_manhattan_3x3_1():
     #then 
     assert result == 14
 
+def test_hamming_2x4_0():
+    #given 
+    state = [
+        [1,2,3,4],
+        [5,6,7,0]
+    ]
+
+    # when
+    result = HammingDistance.evaluate(state)
+
+    #then 
+    assert result == 0
+
+def test_hamming_2x4_1():
+    #given 
+    state = [
+        [7,2,3,1],
+        [5,6,4,0]
+    ]
+
+    # when
+    result = HammingDistance.evaluate(state)
+
+    #then 
+    assert result == 3
+
+def test_hamming_3x3_0():
+    #given 
+    state = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 0]
+    ]
+
+    # when
+    result = HammingDistance.evaluate(state)
+
+    #then 
+    assert result == 0
+
+def test_hamming_3x3_1():
+    #given 
+    state = [
+        [5, 0, 8],
+        [4, 2, 1],
+        [7, 3, 6]
+    ]
+
+    # when
+    result = HammingDistance.evaluate(state)
+
+    #then 
+    assert result == 6
 
 def test_permutations_2x4():
     #given 
