@@ -16,19 +16,12 @@ def write_solution_file(final_node: Node, solution_file, exec_time):
         solution_cost = current_node.total_cost
     solution_file.write('{} {}\n'.format(solution_cost, exec_time))
 
-def write_search_file(closed_list, search_file, search_algorithm):
+
+def write_search_file(closed_list, search_file):
     search_file_line_template = "{} {} {} {}\n"
-    
-    # I KNOW thisis janky but im exhausted and dont feel like doingthis anymore lmao...
-    if str(search_algorithm) == "<class 'a2.search.A_Star'>":
-        for key in closed_list._data:
-            search_file.write(search_file_line_template.format(closed_list._data[key].sorting_key, closed_list._data[key].total_cost, closed_list._data[key].heuristic_score, get_state_string(closed_list._data[key])))
-    elif str(search_algorithm) == "<class 'a2.search.GreedyBestFirstSearch'>":
-        for key in closed_list._data:
-            search_file.write(search_file_line_template.format(0, closed_list._data[key].total_cost, closed_list._data[key].heuristic_score, get_state_string(closed_list._data[key])))
-    elif str(search_algorithm) == "<class 'a2.search.UniformCostSearch'>":
-        for key in closed_list._data:
-            search_file.write(search_file_line_template.format(0, closed_list._data[key].total_cost, 0, get_state_string(closed_list._data[key])))
+
+    for node in closed_list:
+        search_file.write(search_file_line_template.format(node.f, node.total_cost, node.heuristic_score, get_state_string(node)))
 
 
 def stack_nodes(final_node: Node):
