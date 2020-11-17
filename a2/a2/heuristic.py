@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
+
 class HeuristicInterface(ABCMeta):
     @staticmethod
     @abstractmethod
@@ -13,24 +14,43 @@ class NaiveHeuristic(HeuristicInterface):
         width = len(state[0])
         return 0 if state[height-1][width-1] == 0 else 1
 
+
 class ManhattanHeuristic(HeuristicInterface):
     @staticmethod
     def evaluate(state, goals):
         width = len(state[0])
+        height = len(state)
 
-        goal=[1,3,5,7,2,4,6,0]
+        standard_score = 0
+        nonstandard_score = 0
 
-        curr_state = [val for state in state for val in state]
+        for i, row in enumerate(state):
+            for j, element in enumerate(row):
+                x_standard, y_standard = ManhattanHeuristic.get_standard_position(element, width, height)
+                standard_score += (abs(x_standard - j)) + (abs(y_standard - i))
 
-        # Standard Score
-        standard_score = sum(abs((val-1)%width - i%width) + abs((val-1)//width - i//width)
-            for i, val in enumerate(curr_state) if val)
-
-        # Non-standard
-        nonstandard_score = sum(abs(b%width - g%width) + abs(b//width - g//width)
-            for b, g in ((curr_state.index(i), goal.index(i)) for i in range(1,8)))
+                x_nonstandard, y_nonstandard = ManhattanHeuristic.get_nonstandard_position(element, width, height)
+                nonstandard_score += (abs(x_nonstandard - j)) + (abs(y_nonstandard - i))
 
         return min(standard_score, nonstandard_score)
+
+    @staticmethod
+    def get_standard_position(element, width, height):
+        if element == 0:
+            x, y = width - 1, height - 1
+        else:
+            x = (element - 1) % width
+            y = (element - 1) // width
+        return x, y
+
+    @staticmethod
+    def get_nonstandard_position(element, width, height):
+        if element == 0:
+            x, y = width - 1, height - 1
+        else:
+            x = (element - 1) // height
+            y = (element - 1) % height
+        return x, y
 
 class HammingDistance(HeuristicInterface):
     @staticmethod
@@ -44,6 +64,7 @@ class HammingDistance(HeuristicInterface):
                         distances[d] += 1
 
         return min(distances)
+
 
 class SumOfPermutationInversions(HeuristicInterface):
     @staticmethod

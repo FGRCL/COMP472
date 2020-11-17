@@ -8,8 +8,10 @@ def test_naive_4x2_0():
         [5, 6, 7, 0]
     ]
 
+    goals = []
+
     # when
-    result = NaiveHeuristic.evaluate(state)
+    result = NaiveHeuristic.evaluate(state, goals)
 
     # then
     assert result == 0
@@ -22,8 +24,10 @@ def test_naive_4x2_1():
         [5, 6, 7, 3]
     ]
 
+    goals = []
+
     # when
-    result = NaiveHeuristic.evaluate(state)
+    result = NaiveHeuristic.evaluate(state, goals)
 
     # then
     assert result == 1
@@ -39,8 +43,10 @@ def test_naive_5x5_0():
         [21, 22, 23, 24, 0]
     ]
 
+    goals = []
+
     # when
-    result = NaiveHeuristic.evaluate(state)
+    result = NaiveHeuristic.evaluate(state, goals)
 
     # then
     assert result == 0
@@ -56,8 +62,10 @@ def test_naive_5x5_1():
         [21, 22, 23, 24, 13]
     ]
 
+    goals = []
+
     # when
-    result = NaiveHeuristic.evaluate(state)
+    result = NaiveHeuristic.evaluate(state, goals)
 
     # then
     assert result == 1
@@ -69,8 +77,10 @@ def test_manhattan_2x4():
         [5, 6, 3, 0]
     ]
 
+    goals = []
+
     # when
-    result = ManhattanHeuristic.evaluate(state)
+    result = ManhattanHeuristic.evaluate(state, goals)
 
     #then 
     assert result == 2
@@ -83,8 +93,10 @@ def test_manhattan_3x3_0():
         [7, 8, 0]
     ]
 
+    goals = []
+
     # when
-    result = ManhattanHeuristic.evaluate(state)
+    result = ManhattanHeuristic.evaluate(state, goals)
 
     #then 
     assert result == 0
@@ -97,11 +109,13 @@ def test_manhattan_3x3_1():
         [8, 3, 1]
     ]
 
+    goals = []
+
     # when
-    result = ManhattanHeuristic.evaluate(state)
+    result = ManhattanHeuristic.evaluate(state, goals)
 
     #then 
-    assert result == 14
+    assert result == 16
 
 def test_hamming_2x4_0():
     #given 
@@ -212,8 +226,10 @@ def test_permutations_2x4():
         [5,6,4,0]
     ]
 
+    goals = []
+
     # when
-    result = SumOfPermutationInversions.evaluate(state)
+    result = SumOfPermutationInversions.evaluate(state, goals)
 
     #then 
     assert result == 8
