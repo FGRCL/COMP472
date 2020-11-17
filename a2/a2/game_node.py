@@ -6,6 +6,7 @@ from a2.position import Position
 class Node:
     state: List[List[int]]
     position: Position
+    heuristic_score: int
     cost: int
     total_cost: int
     moved_token: int
