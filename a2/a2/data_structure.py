@@ -19,7 +19,9 @@ class OpenList(object):
         self._key += 1
 
     def pop(self):
-        return heapq.heappop(self._heap)[2]
+        node: Node = heapq.heappop(self._heap)[2]
+        del self._hash_map[str(node.state)]
+        return node
 
     def replace_if_smaller(self, new_node:Node):
         if str(new_node.state) in self._hash_map:
@@ -31,7 +33,7 @@ class OpenList(object):
                 node.moved_token = new_node.moved_token
                 node.sorting_key = new_node.sorting_key
                 node.parent = new_node.parent
-                return True
+            return True
         return False
 
 

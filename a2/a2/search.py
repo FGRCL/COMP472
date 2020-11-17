@@ -45,9 +45,9 @@ class GreedyBestFirstSearch(SearchAlgorithmInterface):
         current_node = open.pop()
         while not is_goal(current_node.state, goals):
             for successor in successors(current_node.state, current_node.position):
-                heuristic_score = heuristic.evaluate(successor[0])
+                heuristic_score = heuristic.evaluate(successor[0], goals)
                 new_node = Node(successor[0], successor[1], heuristic_score, successor[2], current_node.total_cost+successor[2], successor[3], heuristic_score, current_node)
-                if new_node not in closed:
+                if new_node not in closed and not open.replace_if_smaller(new_node):
                     open.push(new_node)
             closed += current_node
             current_node = open.pop()
@@ -66,7 +66,7 @@ class A_Star(SearchAlgorithmInterface):
         current_node = open.pop()
         while not is_goal(current_node.state, goals):
             for successor in successors(current_node.state, current_node.position):
-                heuristic_score = heuristic.evaluate(successor[0])
+                heuristic_score = heuristic.evaluate(successor[0], goals)
                 new_node = Node(successor[0], successor[1], heuristic_score, successor[2], current_node.total_cost+successor[2], successor[3], current_node.sorting_key+successor[2]+heuristic_score, current_node)
 
                 if (new_node not in closed and not open.replace_if_smaller(new_node)):
