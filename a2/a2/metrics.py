@@ -4,28 +4,48 @@ from a2.data_structure import ClosedList
 from a2.game_node import Node
 
 
-def print_metrics(final_nodes: List[Node], closed_lists: List[ClosedList], execution_times: List[float], puzzle_count: int, search_name: str, heuristic_name: str):
+def print_metrics(final_nodes: List[Node], closed_lists: List[ClosedList], execution_times: List[float], puzzle_count: int, search_name: str, heuristic_name: str, output_file):
     print('Metrics for: {} {}\n'.format(search_name, heuristic_name))
+    #file
+    print('{},{}'.format(search_name, heuristic_name), file=output_file)
 
     solution_total, solution_average = compute_solution_paths(final_nodes)
     print('Solution path total: {}'.format(solution_total))
     print('Solution path average: {}'.format(solution_average))
+    #file
+    print('{},{}'.format('Solution path total', solution_total), file=output_file)
+    print('{},{}'.format('Solution path average', solution_average), file=output_file)
 
     search_total, search_average = compute_search_paths(closed_lists)
     print('Search path total: {}'.format(search_total))
     print('Search path average: {}'.format(search_average))
+    #file
+    print('{},{}'.format('Search path total', search_total), file=output_file)
+    print('{},{}'.format('Search path average', search_average), file=output_file)
 
     no_sol_total, no_sol_average = compute_no_solution(final_nodes, puzzle_count)
     print('No solution total: {}'.format(no_sol_total))
     print('No solution average: {}'.format(no_sol_average))
+    #file
+    print('{},{}'.format('No solution total', no_sol_total), file=output_file)
+    print('{},{}'.format('No solution average', no_sol_average), file=output_file)
 
     solution_cost_total, solution_cost_average = computer_solution_cost(final_nodes)
     print('Solution cost total: {}'.format(solution_cost_total))
     print('Solution cost average {}'.format(solution_cost_average))
+    #file
+    print('{},{}'.format('Solution cost total', solution_cost_total), file=output_file)
+    print('{},{}'.format('Solution cost average', solution_cost_average), file=output_file)
 
     exec_total, exec_average = compute_execution_time(execution_times)
     print('Execution time total: {}'.format(exec_total))
     print('Execution time average: {}'.format(exec_average))
+    #file
+    print('{},{}'.format('Execution time total', exec_total), file=output_file)
+    print('{},{}'.format('Execution time average', exec_average), file=output_file)
+    print('{}'.format(''), file=output_file)
+    print()
+    print()
 
 
 def compute_solution_paths(final_nodes: List[Node]):
