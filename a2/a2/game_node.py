@@ -9,6 +9,7 @@ class Node:
     heuristic_score: int
     cost: int
     total_cost: int
+    f: int
     moved_token: int
     sorting_key: int
     parent: Type["Node"]

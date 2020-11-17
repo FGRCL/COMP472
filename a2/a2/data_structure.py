@@ -48,3 +48,6 @@ class ClosedList(object):
 
     def __contains__(self, node: Node):
         return str(node.state) in self._data
+
+    def __iter__(self):
+        yield from [self._data[key] for key in self._data]
