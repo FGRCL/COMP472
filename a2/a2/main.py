@@ -2,7 +2,7 @@ import argparse
 import numpy as np
 from enum import Enum
 from a2.heuristic import HeuristicInterface, NaiveHeuristic, ManhattanHeuristic, SumOfPermutationInversions
-from a2.search import SearchAlgorithmInterface, UniformCostSearch, GreedyBestFirstSearch
+from a2.search import SearchAlgorithmInterface, UniformCostSearch, GreedyBestFirstSearch, A_Star
 from a2.output_files import write_solution_file, write_no_solution
 from func_timeout import func_timeout, FunctionTimedOut
 class HeuristicChoice(Enum):
@@ -24,6 +24,7 @@ class HeuristicChoice(Enum):
 class SearchAlgorithmChoice(Enum):
     ucs = UniformCostSearch
     gbfs = GreedyBestFirstSearch
+    astar = A_Star
 
     def __init__(self, algorithm: SearchAlgorithmInterface):
         self.algorithm = algorithm

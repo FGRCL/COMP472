@@ -1,4 +1,4 @@
-from a2.search import UniformCostSearch, GreedyBestFirstSearch, is_goal
+from a2.search import UniformCostSearch, GreedyBestFirstSearch, A_Star, is_goal
 from a2.heuristic import NaiveHeuristic, ManhattanHeuristic, SumOfPermutationInversions
 from a2.state_space import successors
 from a2.position import Position
@@ -181,6 +181,60 @@ def test_gbfs_3x3():
     result1 = GreedyBestFirstSearch.find(state, goals, NaiveHeuristic) # this takes a loot longer than all the others...
     result2 = GreedyBestFirstSearch.find(state, goals, ManhattanHeuristic)
     result3 = GreedyBestFirstSearch.find(state, goals, SumOfPermutationInversions)
+
+    # then
+    assert result1[0].state in goals
+    assert result2[0].state in goals
+    assert result3[0].state in goals
+
+def test_astar_4x2():
+    # given
+    state = [
+        [2, 5, 7, 1],
+        [3, 0, 6, 4]
+    ]
+
+    goals = [
+        [
+            [1, 2, 3, 4],
+            [5, 6, 7, 0]
+        ],
+        [
+            [1, 3, 5, 7],
+            [2, 4, 6, 0]
+        ]
+    ]
+
+    # when
+    result1 = A_Star.find(state, goals, NaiveHeuristic)
+    result2 = A_Star.find(state, goals, ManhattanHeuristic)
+    result3 = A_Star.find(state, goals, SumOfPermutationInversions)
+
+    # then
+    assert result1[0].state in goals
+    assert result2[0].state in goals
+    assert result3[0].state in goals
+
+def test_astar_3x3():
+    # given
+    state = [
+        [1, 4, 5],
+        [2, 3, 7],
+        [8, 0, 6]
+    ]
+
+    goals = [
+        [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 0]
+        ]
+    ]
+
+    # when
+    result1 = A_Star.find(state, goals, NaiveHeuristic) # this takes a loot longer than all the others...
+    result2 = A_Star.find(state, goals, ManhattanHeuristic)
+    result3 = A_Star.find(state, goals, SumOfPermutationInversions)
 
     # then
     assert result1[0].state in goals
