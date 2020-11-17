@@ -41,7 +41,7 @@ class ClosedList(object):
         self._data = {}
 
     def __add__(self, node: Node):
-        self._data[str(node.state)] = True
+        self._data[str(node.state)] = node
         return self
 
     def __contains__(self, node: Node):
