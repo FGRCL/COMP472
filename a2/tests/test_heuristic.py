@@ -1,4 +1,4 @@
-from a2.heuristic import NaiveHeuristic
+from a2.heuristic import NaiveHeuristic, ManhattanHeuristic, SumOfPermutationInversions
 
 
 def test_naive_4x2_0():
@@ -61,3 +61,43 @@ def test_naive_5x5_1():
 
     # then
     assert result == 1
+
+def test_manhattan_3x3():
+    #given 
+    state = [
+        [7, 2, 4],
+        [5, 0, 6],
+        [8, 3, 1]
+    ]
+
+    # when
+    result = ManhattanHeuristic.evaluate(state)
+
+    #then 
+    assert result == 14
+
+def test_manhattan_2x4():
+    #given 
+    state = [
+        [1, 2, 7, 4],
+        [5, 6, 3, 0]
+    ]
+
+    # when
+    result = ManhattanHeuristic.evaluate(state)
+
+    #then 
+    assert result == 2
+
+def test_permutations_2x4():
+    #given 
+    state = [
+        [7,2,3,1],
+        [5,6,4,0]
+    ]
+
+    # when
+    result = SumOfPermutationInversions.evaluate(state)
+
+    #then 
+    assert result == 8
