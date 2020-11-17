@@ -1,5 +1,5 @@
 from a2.search import UniformCostSearch, GreedyBestFirstSearch, A_Star, is_goal
-from a2.heuristic import NaiveHeuristic, ManhattanHeuristic, SumOfPermutationInversions
+from a2.heuristic import NaiveHeuristic, ManhattanHeuristic, HammingDistance, SumOfPermutationInversions
 from a2.state_space import successors
 from a2.position import Position
 import numpy as np
@@ -155,11 +155,14 @@ def test_gbfs_4x2():
     result1 = GreedyBestFirstSearch.find(state, goals, NaiveHeuristic)
     result2 = GreedyBestFirstSearch.find(state, goals, ManhattanHeuristic)
     result3 = GreedyBestFirstSearch.find(state, goals, SumOfPermutationInversions)
+    result4 = GreedyBestFirstSearch.find(state, goals, HammingDistance)
+    
 
     # then
     assert result1[0].state in goals
     assert result2[0].state in goals
     assert result3[0].state in goals
+    assert result4[0].state in goals
 
 def test_gbfs_3x3():
     # given
@@ -181,11 +184,13 @@ def test_gbfs_3x3():
     result1 = GreedyBestFirstSearch.find(state, goals, NaiveHeuristic) # this takes a loot longer than all the others...
     result2 = GreedyBestFirstSearch.find(state, goals, ManhattanHeuristic)
     result3 = GreedyBestFirstSearch.find(state, goals, SumOfPermutationInversions)
+    result4 = GreedyBestFirstSearch.find(state, goals, HammingDistance)
 
     # then
     assert result1[0].state in goals
     assert result2[0].state in goals
     assert result3[0].state in goals
+    assert result4[0].state in goals
 
 def test_astar_4x2():
     # given
@@ -209,11 +214,13 @@ def test_astar_4x2():
     result1 = A_Star.find(state, goals, NaiveHeuristic)
     result2 = A_Star.find(state, goals, ManhattanHeuristic)
     result3 = A_Star.find(state, goals, SumOfPermutationInversions)
+    result4 = A_Star.find(state, goals, HammingDistance)
 
     # then
     assert result1[0].state in goals
     assert result2[0].state in goals
     assert result3[0].state in goals
+    assert result4[0].state in goals
 
 def test_astar_3x3():
     # given
@@ -235,9 +242,11 @@ def test_astar_3x3():
     result1 = A_Star.find(state, goals, NaiveHeuristic) # this takes a loot longer than all the others...
     result2 = A_Star.find(state, goals, ManhattanHeuristic)
     result3 = A_Star.find(state, goals, SumOfPermutationInversions)
+    result4 = A_Star.find(state, goals, HammingDistance)
 
     # then
     assert result1[0].state in goals
     assert result2[0].state in goals
     assert result3[0].state in goals
+    assert result4[0].state in goals
 

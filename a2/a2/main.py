@@ -1,13 +1,14 @@
 import argparse
 import numpy as np
 from enum import Enum
-from a2.heuristic import HeuristicInterface, NaiveHeuristic, ManhattanHeuristic, SumOfPermutationInversions
+from a2.heuristic import HeuristicInterface, NaiveHeuristic, ManhattanHeuristic, HammingDistance, SumOfPermutationInversions
 from a2.search import SearchAlgorithmInterface, UniformCostSearch, GreedyBestFirstSearch, A_Star
 from a2.output_files import write_solution_file, write_search_file, write_no_solution
 from func_timeout import func_timeout, FunctionTimedOut
 class HeuristicChoice(Enum):
     naive = NaiveHeuristic
     manhattan = ManhattanHeuristic
+    hamming = HammingDistance
     permutations = SumOfPermutationInversions
 
     def __init__(self, heuristic: HeuristicInterface):
