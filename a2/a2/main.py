@@ -2,9 +2,12 @@ import argparse
 import numpy as np
 from enum import Enum
 from a2.heuristic import HeuristicInterface, NaiveHeuristic, ManhattanHeuristic, HammingDistance, SumOfPermutationInversions
+from a2.metrics import print_metrics
 from a2.search import SearchAlgorithmInterface, UniformCostSearch, GreedyBestFirstSearch, A_Star
 from a2.output_files import write_solution_file, write_search_file, write_no_solution
 from func_timeout import func_timeout, FunctionTimedOut
+
+
 class HeuristicChoice(Enum):
     naive = NaiveHeuristic
     manhattan = ManhattanHeuristic
@@ -41,15 +44,23 @@ class SearchAlgorithmChoice(Enum):
 def main(input_puzzle, solution_directory, search_directory, search_timeout, algorithm: SearchAlgorithmChoice, heuristic: HeuristicChoice, width: int, height: int):
     goals = get_goals(width, height)
 
+    final_nodes = []
+    closed_lists = []
+    execution_times = []
     # TODO we might be able to solve different puzzles in parallel
     puzzles = get_puzzles(input_puzzle, width, height)
     for i, puzzle in enumerate(puzzles):
         solution_file_path = '{}{}_{}-{}_solution.txt'.format(solution_directory, i, algorithm.name, heuristic.name)
         search_file_path = '{}{}_{}_{}_search.txt'.format(search_directory, i, algorithm.name, heuristic.name)
-        puzzle_solver_worker(puzzle, goals, algorithm.algorithm, heuristic.heuristic, solution_file_path, search_file_path, search_timeout)
+        final_node, closed_list, exec_time = puzzle_solver_worker(puzzle, goals, algorithm.algorithm, heuristic.heuristic, solution_file_path, search_file_path, search_timeout)
+        final_nodes.append(final_node)
+        closed_lists.append(closed_list)
+        execution_times.append(exec_time)
+    print_metrics(final_nodes, closed_lists, execution_times, len(puzzles), algorithm.name, heuristic.name)
 
 
 def puzzle_solver_worker(puzzle, goals, search_algorithm, heuristic, solution_file_path, search_file_path, search_timeout):
+    final_node, closed_list, exec_time = None, None, None
     with open(solution_file_path, 'w+') as solution_file, open(search_file_path, 'w+') as search_file:
         try:
             final_node, closed_list, exec_time = func_timeout(search_timeout, search_algorithm.find, args=(puzzle, goals, heuristic))
@@ -57,6 +68,7 @@ def puzzle_solver_worker(puzzle, goals, search_algorithm, heuristic, solution_fi
             write_search_file(closed_list, search_file)
         except FunctionTimedOut:
             write_no_solution(solution_file)
+    return final_node, closed_list, exec_time
 
 
 def get_puzzles(input_puzzle, width, height):

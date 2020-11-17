@@ -41,8 +41,9 @@ def get_solution_path_length(final_node: Node):
 
 
 def compute_search_paths(closed_lists: List[ClosedList]):
-    total = sum([get_search_path_length(closed_list) for closed_list in closed_lists])
-    average = total/len(closed_lists)
+    successful_closed_lists = [closed_list for closed_list in closed_lists if closed_list is not None]
+    total = sum([get_search_path_length(closed_list) for closed_list in successful_closed_lists])
+    average = total/len(successful_closed_lists)
     return total, average
 
 
@@ -57,6 +58,7 @@ def compute_no_solution(final_nodes: List[Node], puzzle_count: int):
 
 
 def compute_execution_time(execution_times: List[float]):
-    total = sum(execution_times)
-    average = total/len(execution_times)
+    succesful_exec_time = [exec_time for exec_time in execution_times if exec_time is not None]
+    total = sum(succesful_exec_time)
+    average = total/len(succesful_exec_time)
     return total, average
