@@ -3,19 +3,19 @@ from abc import ABCMeta, abstractmethod
 class HeuristicInterface(ABCMeta):
     @staticmethod
     @abstractmethod
-    def evaluate(state): raise NotImplemented
+    def evaluate(state, goals): raise NotImplemented
 
 
 class NaiveHeuristic(HeuristicInterface):
     @staticmethod
-    def evaluate(state):
+    def evaluate(state, goals):
         height = len(state)
         width = len(state[0])
         return 0 if state[height-1][width-1] == 0 else 1
 
 class ManhattanHeuristic(HeuristicInterface):
     @staticmethod
-    def evaluate(state):
+    def evaluate(state, goals):
         width = len(state[0])
 
         goal=[1,3,5,7,2,4,6,0]
@@ -34,34 +34,20 @@ class ManhattanHeuristic(HeuristicInterface):
 
 class HammingDistance(HeuristicInterface):
     @staticmethod
-    def evaluate(state): 
+    def evaluate(state, goals):
+        distances = [0] * len(goals)
 
-        goal=[1,3,5,7,2,4,6,0]
+        for d, goal in enumerate(goals):
+            for i, row in enumerate(state):
+                for j, element in enumerate(row):
+                    if goal[i][j] != element:
+                        distances[d] += 1
 
-        curr_state = [val for state in state for val in state]
-
-        # Standard Score
-        standard_score = 0
-        for key, val in enumerate(curr_state):
-            if val != 0:
-                if val != key+1:
-                    standard_score +=1
-
-        # Non-standard Score
-        nonstandard_score = 0
-        for key, val in enumerate(curr_state):
-            if (val != 0 and val%2 != 0): # odd case
-                if (0.5*val+0.5 != key+1):
-                    nonstandard_score += 1
-            elif (val != 0 and val%2 == 0): # even case
-                if (0.5*val+4 != key+1):
-                    nonstandard_score += 1
-        
-        return min(standard_score, nonstandard_score)
+        return min(distances)
 
 class SumOfPermutationInversions(HeuristicInterface):
     @staticmethod
-    def evaluate(state):
+    def evaluate(state, goals):
         curr_state = [val for state in state for val in state]
 
         # Standard Score

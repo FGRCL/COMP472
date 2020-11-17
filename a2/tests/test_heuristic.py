@@ -110,8 +110,19 @@ def test_hamming_2x4_0():
         [5,6,7,0]
     ]
 
+    goals = [
+        [
+            [1, 2, 3, 4],
+            [5, 6, 7, 0]
+        ],
+        [
+            [1, 3, 5, 7],
+            [2, 4, 6, 0]
+        ]
+    ]
+
     # when
-    result = HammingDistance.evaluate(state)
+    result = HammingDistance.evaluate(state, goals)
 
     #then 
     assert result == 0
@@ -123,8 +134,19 @@ def test_hamming_2x4_1():
         [5,6,4,0]
     ]
 
+    goals = [
+        [
+            [1, 2, 3, 4],
+            [5, 6, 7, 0]
+        ],
+        [
+            [1, 3, 5, 7],
+            [2, 4, 6, 0]
+        ]
+    ]
+
     # when
-    result = HammingDistance.evaluate(state)
+    result = HammingDistance.evaluate(state, goals)
 
     #then 
     assert result == 3
@@ -137,8 +159,21 @@ def test_hamming_3x3_0():
         [7, 8, 0]
     ]
 
+    goals = [
+        [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 0]
+        ],
+        [
+            [1, 4, 7],
+            [2, 5, 8],
+            [3, 6, 0]
+        ]
+    ]
+
     # when
-    result = HammingDistance.evaluate(state)
+    result = HammingDistance.evaluate(state, goals)
 
     #then 
     assert result == 0
@@ -151,11 +186,24 @@ def test_hamming_3x3_1():
         [7, 3, 6]
     ]
 
+    goals = [
+        [
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 0]
+        ],
+        [
+            [1, 4, 7],
+            [2, 5, 8],
+            [3, 6, 0]
+        ]
+    ]
+
     # when
-    result = HammingDistance.evaluate(state)
+    result = HammingDistance.evaluate(state, goals)
 
     #then 
-    assert result == 6
+    assert result == 7
 
 def test_permutations_2x4():
     #given 
