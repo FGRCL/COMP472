@@ -93,7 +93,7 @@ def get_goals(width, height):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="ᵡ-puzzle solver", description="A program to find the solution of a ᵡ-puzzle using a chosen algorithm")
-    parser.add_argument("--inputpuzzle", "-in", metavar="input puzzle", help="the path to the file containing the puzzles to solve", type=open, default="in/puzzle_final.txt")
+    parser.add_argument("--inputpuzzle", "-in", metavar="input puzzle", help="the path to the file containing the puzzles to solve", type=open, default="in/puzzle_50.txt")
     parser.add_argument("--solutiondirectory", "-out", metavar="solution directory", help="the path to the directory to output the puzzle solutions", type=str, default="out/solution/")
     parser.add_argument("--searchdirectory", "-s", metavar="search file", help="the path to the directory to output the algorithm's searched states", type=str, default="out/search/")
     parser.add_argument("--metricsfile", "-m", metavar="metrics file", help="the path to the file to output the algorithm's metrics", type=str, default="out/metrics/metrics.csv")
