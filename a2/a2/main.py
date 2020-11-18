@@ -41,7 +41,7 @@ class SearchAlgorithmChoice(Enum):
         return SearchAlgorithmChoice[name]
 
 
-def main(input_puzzle, solution_directory, search_directory, metrics_directory, search_timeout, algorithm: SearchAlgorithmChoice, heuristic: HeuristicChoice, width: int, height: int):
+def main(input_puzzle, solution_directory, search_directory, metrics_file, search_timeout, algorithm: SearchAlgorithmChoice, heuristic: HeuristicChoice, width: int, height: int):
     goals = get_goals(width, height)
 
     final_nodes = []
@@ -56,7 +56,7 @@ def main(input_puzzle, solution_directory, search_directory, metrics_directory, 
         final_nodes.append(final_node)
         closed_lists.append(closed_list)
         execution_times.append(exec_time)
-    print_metrics(final_nodes, closed_lists, execution_times, len(puzzles), algorithm.name, heuristic.name, metrics_directory)
+    print_metrics(final_nodes, closed_lists, execution_times, len(puzzles), algorithm.name, heuristic.name, metrics_file)
 
 
 def puzzle_solver_worker(puzzle, goals, search_algorithm, heuristic, solution_file_path, search_file_path, search_timeout):
@@ -94,9 +94,9 @@ def get_goals(width, height):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="ᵡ-puzzle solver", description="A program to find the solution of a ᵡ-puzzle using a chosen algorithm")
     parser.add_argument("--inputpuzzle", "-in", metavar="input puzzle", help="the path to the file containing the puzzles to solve", type=open, default="in/puzzle_final.txt")
-    parser.add_argument("--solutiondirectory", "-out", metavar="solution directory", help="the path to the directory to output the puzzle solutions to", type=str, default="out/solution/")
-    parser.add_argument("--searchfile", "-sf", metavar="search file", help="the path to the file to output the algorithm's searched states to", type=str, default="out/search/")
-    parser.add_argument("--metricsfile", "-mf", metavar="metrics file", help="the path to the file to output the algorithm's metrics", type=str, default="out/metrics/metrics.csv")
+    parser.add_argument("--solutiondirectory", "-out", metavar="solution directory", help="the path to the directory to output the puzzle solutions", type=str, default="out/solution/")
+    parser.add_argument("--searchdirectory", "-s", metavar="search file", help="the path to the directory to output the algorithm's searched states", type=str, default="out/search/")
+    parser.add_argument("--metricsfile", "-m", metavar="metrics file", help="the path to the file to output the algorithm's metrics", type=str, default="out/metrics/metrics.csv")
     parser.add_argument("--searchtimeout", "-t", metavar="timeout", help="the allotted time for a search algorithm to find a solution in seconds", type=int, default=60)
     parser.add_argument("--dimensions", "-d", metavar="dimensions", help="the dimensions of the puzzle in the format: {width}x{height}. ex.: 4x2", type=str, default="4x2")
     parser.add_argument("--algorithm", "-a", help="the search algorithm to use", choices=SearchAlgorithmChoice, type=SearchAlgorithmChoice.from_string, default=SearchAlgorithmChoice.ucs)
@@ -109,4 +109,4 @@ if __name__ == "__main__":
     metrics = args.metricsfile
     if type(args.metricsfile) is str:
         metrics = open(args.metricsfile, 'a')
-    main(args.inputpuzzle, args.solutiondirectory, args.searchfile, metrics, args.searchtimeout, args.algorithm, args.heuristic, board_width, board_height)
+    main(args.inputpuzzle, args.solutiondirectory, args.searchdirectory, metrics, args.searchtimeout, args.algorithm, args.heuristic, board_width, board_height)
