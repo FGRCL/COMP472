@@ -15,7 +15,7 @@ Activate your python environment if necessary
 
 ***NOTE: Pre-generated solution, search, and metric files for each algorithm and heuristic can be found in the 'out' folder***
 
-Use `main.py` to solve a any size sliding puzzle. The script has the following arguments.
+Use `main.py` to solve any size sliding puzzle. The script has the following arguments.
 
 ```
 -h, --help            show this help message and exit
