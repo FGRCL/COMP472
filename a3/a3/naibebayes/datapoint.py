@@ -1,8 +1,7 @@
 from dataclasses import dataclass
-from typing import Iterable
-
+from typing import Dict
 
 @dataclass
 class Datapoint:
-    features: Iterable[str]
+    features: Dict[str, int]
     label: str

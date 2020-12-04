@@ -4,27 +4,26 @@ from a3.naibebayes.naive_bayes import NaiveBayes
 
 def test_naive_bayes():
     datapoints = [
-        Datapoint(("test", "mother", "ship"), True),
-        Datapoint(("test", "mother", "land"), False)
+        Datapoint({"test": 1, "mother": 1, "ship": 1}, "yes"),
+        Datapoint({"test": 1, "mother": 1, "land": 1}, "no")
     ]
-    bayesClassifier = NaiveBayes()
-    bayesClassifier.train(datapoints)
+    bayes_classifier = NaiveBayes()
+    bayes_classifier.train(datapoints)
 
     document_to_predict = ("test", "mother", "ship")
 
-    result = bayesClassifier.predict(document_to_predict)
+    result = bayes_classifier.predict(document_to_predict)
 
-    assert result[1] == True
+    assert result[1] == "yes"
 
     document_to_predict = ("test", "mother", "land")
 
-    result = bayesClassifier.predict(document_to_predict)
+    result = bayes_classifier.predict(document_to_predict)
 
-    assert result[1] == False
+    assert result[1] == "no"
 
     document_to_predict = ("test", "mother")
 
-    result = bayesClassifier.predict(document_to_predict)
+    result = bayes_classifier.predict(document_to_predict)
 
-    assert result[1] == True
-
+    assert result[1] == "yes"
