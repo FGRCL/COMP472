@@ -16,18 +16,21 @@ class NaiveBayes:
         for label in event_counts:
             for feature in features:
                 safe_init(self.conditionals, label, {})
+
                 if feature not in event_counts[label]:
                     event = delta
                 else :
                     event = event_counts[label][feature] + delta
                 prior = prior_counts[label] + (len(features) * 0.01)
+                
+                self.conditionals[label][feature] = event / prior
             self.class_probabilities[label] = prior_counts[label] / datapoint_count
 
     @staticmethod
     def __get_event_prior_counts(datapoints, delta):
         event_counts = {}
         prior_counts = {}
-        features = {}
+        features = set()
         datapoint_count = 0
         prior_prob = {}; 
 
@@ -36,8 +39,7 @@ class NaiveBayes:
             datapoint_count += 1
             initialize_or_increment(prior_counts, label, 1, 1)
             for feature in datapoint.features:
-                features[feature] = 1
-                # features.add(feature)
+                features.add(feature)
                 # word_count = datapoint.features[feature]
                 # initialize_or_increment(prior_counts, label, word_count, word_count)
                 safe_init(event_counts, label, {})
