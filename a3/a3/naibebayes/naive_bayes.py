@@ -11,24 +11,9 @@ class NaiveBayes:
 
     def train(self, datapoints: Iterable[Datapoint]):
         delta = 0.01
-        event_counts = {}
-        prior_counts = {}
-        features = set()
-        datapoint_count = 0
 
-        for datapoint in datapoints:
-            label = datapoint.label
-            datapoint_count += 1
-            for feature in datapoint.features:
-                features.add(feature)
-                initialize_or_increment(prior_counts, label, 1, 1)
-                safe_init(event_counts, label, {})
-                initialize_or_increment(event_counts[label], feature, 1+delta, 1)
-
-        for label in prior_counts:
-            prior_counts[label] += len(features)
-            for feature in features:
-                safe_init(event_counts[label], feature, delta)
+        event_counts, prior_counts, features, datapoint_count = self.__get_event_prior_counts(datapoints, delta)
+        self.__smoothing(event_counts, prior_counts, features, delta)
 
         for label in event_counts:
             for feature in features:
@@ -40,11 +25,39 @@ class NaiveBayes:
 
             self.class_probabilities[label] = prior_counts[label] / datapoint_count
 
+    @staticmethod
+    def __get_event_prior_counts(datapoints, delta):
+        event_counts = {}
+        prior_counts = {}
+        features = set()
+        datapoint_count = 0
+
+        for datapoint in datapoints:
+            label = datapoint.label
+            datapoint_count += 1
+            for feature in datapoint.features:
+                features.add(feature)
+
+                word_count = datapoint.features[feature]
+                initialize_or_increment(prior_counts, label, word_count, word_count)
+                safe_init(event_counts, label, {})
+                initialize_or_increment(event_counts[label], feature, word_count+delta, word_count)
+
+        return event_counts, prior_counts, features, datapoint_count
+
+    @staticmethod
+    def __smoothing(event_counts, prior_counts, features, delta):
+        for label in prior_counts:
+            prior_counts[label] += len(features)
+            for feature in features:
+                safe_init(event_counts[label], feature, delta)
+
     def predict(self, features: Iterable[str]):
         scores = []
         for label in self.class_probabilities:
             score = self.class_probabilities[label]
             for feature in features:
-                score += math.log(self.conditionals[label][feature])
+                if feature in self.conditionals[label]:
+                    score += math.log(self.conditionals[label][feature])
             scores.append((score, label))
         return max(scores)
