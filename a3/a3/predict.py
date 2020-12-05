@@ -6,12 +6,10 @@ from a3.naibebayes.naive_bayes import NaiveBayes
 from a3.parser.tokenizer import parse_file, tweet_to_datapoints, filter_vocabulary
 
 
-def predict(input_file, model_file, output_directory):
+def predict(input_file, model_file, trace_file, eval_file):
     model: NaiveBayes = pickle.load(open(model_file, 'rb'))
 
-    trace_file_path = '{}trace_NB-BOW-OV'.format(output_directory)
     trace_file_line_template = "{}  {}  {}  {}  {}\n"
-    eval_file_path = '{}eval_NB-BOW-OV.txt'.format(output_directory)
     eval_file_line_template = "{}  {}\n"
 
     total_instances = 0
@@ -23,7 +21,7 @@ def predict(input_file, model_file, output_directory):
     total_yes = 0
     total_no = 0
 
-    with open(trace_file_path, 'w+') as trace, open(eval_file_path, 'w+') as eval:
+    with open(trace_file, 'w+') as trace, open(eval_file, 'w+') as eval:
         for datapoint in parse_file(input_file):
             total_instances += 1
             prediction = model.predict(datapoint[1])
@@ -77,7 +75,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog="Predict with a model", description="A program to make predictions with a model")
     parser.add_argument('--input', '-i', help="Path to the tweets to predict", type=str, default="in/covid_test_public.tsv")
     parser.add_argument('--model', '-m', help="Path to the serialized model", type=str, default="model/bayes.pickle")
-    parser.add_argument('--output', '-o', help="Path to the output folder", type=str, default="out/")
+    parser.add_argument('--trace', '-t', help="Path to the trace file", type=str, default="out/trace_NB-BOW-OV.txt")
+    parser.add_argument('--eval', '-e', help="Path to the eval file", type=str, default="out/eval_NB-BOW-OV.txt")
     args = parser.parse_args()
 
-    predict(args.input, args.model, args.output)
+    predict(args.input, args.model, args.trace, args.eval)
