@@ -31,7 +31,6 @@ class NaiveBayes:
         prior_counts = {}
         features = set()
         datapoint_count = 0
-        prior_prob = {}; 
 
         for datapoint in datapoints:
             label = datapoint.label
