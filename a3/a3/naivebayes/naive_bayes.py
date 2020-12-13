@@ -1,6 +1,6 @@
 import math
 from typing import Iterable
-from a3.naibebayes.datapoint import Datapoint
+from a3.naivebayes.datapoint import Datapoint
 from a3.util.util import initialize_or_increment, safe_init
 
 class NaiveBayes:
@@ -12,6 +12,8 @@ class NaiveBayes:
         delta = 0.01
 
         event_counts, prior_counts, features, datapoint_count = self.__get_event_prior_counts(datapoints, delta)
+
+        print(f'feature size: {len(features)}')
         for label in event_counts:
             for feature in features:
                 safe_init(self.conditionals, label, {})

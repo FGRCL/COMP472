@@ -1,7 +1,7 @@
 import argparse
 import pickle
 
-from a3.naibebayes.naive_bayes import NaiveBayes
+from a3.naivebayes.naive_bayes import NaiveBayes
 from a3.parser.tokenizer import parse_file, tweet_to_datapoints, filter_vocabulary
 
 

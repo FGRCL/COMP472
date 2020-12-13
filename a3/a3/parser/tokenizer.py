@@ -1,6 +1,6 @@
 from typing import Generator, Tuple, Iterable, List
 
-from a3.naibebayes.datapoint import Datapoint
+from a3.naivebayes.datapoint import Datapoint
 from a3.util.util import initialize_or_increment
 
 

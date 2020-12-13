@@ -1,4 +1,4 @@
-from a3.naibebayes.datapoint import Datapoint
+from a3.naivebayes.datapoint import Datapoint
 from a3.parser.tokenizer import parse_file, tweet_to_datapoints, filter_vocabulary
 
 

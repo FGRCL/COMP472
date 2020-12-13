@@ -1,5 +1,5 @@
-from a3.naibebayes.datapoint import Datapoint
-from a3.naibebayes.naive_bayes import NaiveBayes
+from a3.naivebayes.datapoint import Datapoint
+from a3.naivebayes.naive_bayes import NaiveBayes
 
 
 def test_naive_bayes():
